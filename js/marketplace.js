@@ -1,9 +1,35 @@
 /* =============================================================
-   RE-OCEAN — marketplace.js
+   LAMURI — marketplace.js
    Products with real Unsplash images, no emoji
    ============================================================= */
 
 const PRODUCTS = [
+  {
+    id: 991, name: 'Tulang Ikan Tuna Segar (Per Kg)', mainType: 'limbah',
+    category: 'tulang', price: 5000, oldPrice: null,
+    rating: 4.5, sold: 450, stock: 120,
+    seller: 'Koperasi Nelayan Lampulo',
+    image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=400&h=280&q=80',
+    badge: 'Bahan Baku', badgeType: 'badge-warning',
+    description: 'Limbah tulang ikan tuna segar, cocok untuk bahan baku pembuatan tepung ikan atau pupuk cair organik. Diambil langsung dari hasil tangkapan harian.',
+    journey: [
+      { title: 'Tangkapan Pagi', desc: 'Ikan ditangkap oleh nelayan lokal di perairan Aceh.', loc: 'Perairan Aceh' },
+      { title: 'Fillet & Pemisahan', desc: 'Daging dipisahkan untuk pasar, tulang dan sisa kepala dikumpulkan khusus.', loc: 'TPI Lampulo' }
+    ]
+  },
+  {
+    id: 992, name: 'Kulit Ikan Kakap Mentah (Per Kg)', mainType: 'limbah',
+    category: 'kulit', price: 12000, oldPrice: null,
+    rating: 4.9, sold: 120, stock: 45,
+    seller: 'Pengepul Lokal Meulaboh',
+    image: 'https://images.unsplash.com/photo-1595166244673-8b74fb2fa177?auto=format&fit=crop&w=400&h=280&q=80',
+    badge: 'Limbah Mentah', badgeType: 'badge-light',
+    description: 'Kulit ikan kakap segar kualitas terbaik. Siap diolah menjadi keripik atau diekstrak kolagennya.',
+    journey: [
+      { title: 'Tangkapan Harian', desc: 'Kakap merah ditangkap segar dari laut dangkal.', loc: 'Pesisir Meulaboh' },
+      { title: 'Pemisahan Kulit', desc: 'Kulit dipisahkan dengan teknik steril tanpa merusak serat.', loc: 'Toko Penjual Nelayan Meulaboh' }
+    ]
+  },
   {
     id: 1, name: 'Keripik Kulit Ikan Tongkol', mainType: 'olahan',
     category: 'makanan', price: 35000, oldPrice: 45000,
@@ -13,10 +39,10 @@ const PRODUCTS = [
     badge: 'Terlaris', badgeType: 'badge-blue',
     description: 'Keripik renyah dari kulit ikan tongkol segar, diproses higienis tanpa pengawet. Kaya protein dan kolagen alami.',
     journey: [
-      { title: 'Tangkapan Segar di Laut', desc: 'Nelayan mitra RE-OCEAN menangkap ikan tongkol segar di perairan Samudera Hindia, sekitar 20 mil dari pesisir Aceh.', loc: 'Perairan Aceh Besar' },
-      { title: 'Pemisahan dan Pembersihan', desc: 'Kulit ikan dipisahkan, dicuci dengan air garam steril, dan dibersihkan dari sisa daging dengan teknik food-grade.', loc: 'Hub RE-OCEAN Ulee Lheue' },
+      { title: 'Tangkapan Segar di Laut', desc: 'Nelayan mitra LAMURI menangkap ikan tongkol segar di perairan Samudera Hindia, sekitar 20 mil dari pesisir Aceh.', loc: 'Perairan Aceh Besar' },
+      { title: 'Pemisahan dan Pembersihan', desc: 'Kulit ikan dipisahkan, dicuci dengan air garam steril, dan dibersihkan dari sisa daging dengan teknik food-grade.', loc: 'Toko Penjual Ulee Lheue' },
       { title: 'Pengeringan dan Penggorengan', desc: 'Kulit dijemur 8 jam, kemudian digoreng pada suhu 180°C menggunakan minyak sawit murni. Tidak ada tambahan pengawet.', loc: 'Dapur Pengolahan Bersertifikat' },
-      { title: 'Pengemasan Higienis', desc: 'Dikemas dalam kemasan aluminium foil kedap udara dengan label nutrisi lengkap, dipacking oleh tim terlatih bersertifikat BPOM.', loc: 'Fasilitas Pengemasan RE-OCEAN' }
+      { title: 'Pengemasan Higienis', desc: 'Dikemas dalam kemasan aluminium foil kedap udara dengan label nutrisi lengkap, dipacking oleh tim terlatih bersertifikat BPOM.', loc: 'Fasilitas Pengemasan LAMURI' }
     ]
   },
   {
@@ -29,9 +55,9 @@ const PRODUCTS = [
     description: 'Pupuk cair dari fermentasi limbah ikan. Kaya nitrogen, fosfor, dan kalium — cocok untuk semua jenis tanaman.',
     journey: [
       { title: 'Pengumpulan Limbah Organik', desc: 'Sisa kepala, tulang, dan isi perut ikan dikumpulkan dari nelayan mitra dalam kondisi segar untuk mencegah pembusukan.', loc: 'Dermaga Ulee Lheue' },
-      { title: 'Fermentasi Anaerobik', desc: 'Limbah difermentasi selama 21 hari dalam biodigester tertutup dengan starter bakteri EM4 untuk menghasilkan nutrisi optimal.', loc: 'Fasilitas Fermentasi RE-OCEAN' },
+      { title: 'Fermentasi Anaerobik', desc: 'Limbah difermentasi selama 21 hari dalam biodigester tertutup dengan starter bakteri EM4 untuk menghasilkan nutrisi optimal.', loc: 'Fasilitas Fermentasi LAMURI' },
       { title: 'Penyaringan dan Pengenceran', desc: 'Cairan hasil fermentasi disaring 3 tahap, diencerkan, dan diuji kandungan NPK di laboratorium terakreditasi.', loc: 'Lab Agritech Aceh' },
-      { title: 'Bottling dan Distribusi', desc: 'Dikemas dalam botol HDPE 1 liter dengan petunjuk penggunaan, siap dikirim ke petani seluruh Aceh.', loc: 'Gudang Distribusi RE-OCEAN' }
+      { title: 'Bottling dan Distribusi', desc: 'Dikemas dalam botol HDPE 1 liter dengan petunjuk penggunaan, siap dikirim ke petani seluruh Aceh.', loc: 'Gudang Distribusi LAMURI' }
     ]
   },
   {
@@ -44,7 +70,7 @@ const PRODUCTS = [
     description: 'Tas tangan handmade dari sisik ikan yang diawetkan dan dirangkai secara artistik. Unik, kuat, dan ramah lingkungan.',
     journey: [
       { title: 'Panen Sisik dari Nelayan', desc: 'Sisik ikan dari berbagai spesies — baronang, kakap, kerapu — dikumpulkan setelah proses fillet. Setiap kg sisik setara produksi dari sekitar 50 ekor ikan.', loc: 'Pelabuhan Ikan Lampulo' },
-      { title: 'Pembersihan dan Sterilisasi', desc: 'Sisik direndam larutan NaOH 2%, disikat manual, disterilkan UV, lalu dikeringkan sempurna. Proses ini memastikan tidak ada bau tersisa.', loc: 'Workshop RE-OCEAN' },
+      { title: 'Pembersihan dan Sterilisasi', desc: 'Sisik direndam larutan NaOH 2%, disikat manual, disterilkan UV, lalu dikeringkan sempurna. Proses ini memastikan tidak ada bau tersisa.', loc: 'Workshop LAMURI' },
       { title: 'Pewarnaan Alami', desc: 'Sisik diwarnai dengan pewarna alami dari kunyit, indigo, dan daun pandan — tanpa bahan kimia sintetis.', loc: 'Sentra Pewarna Alami Aceh' },
       { title: 'Perangkaian Artistik', desc: 'Pengrajin berpengalaman 10+ tahun merangkai sisik satu per satu dengan teknik wire-wrapping. Satu tas membutuhkan 4–6 jam kerja.', loc: 'Atelier Karya Pesisir' }
     ]
@@ -58,7 +84,7 @@ const PRODUCTS = [
     badge: 'Terlaris', badgeType: 'badge-blue',
     description: 'Suplemen kolagen tipe I & III dari sisik ikan. Bioavailabilitas tinggi untuk kulit sehat, sendi fleksibel, dan rambut kuat.',
     journey: [
-      { title: 'Ekstraksi Kolagen Sisik', desc: 'Sisik ikan kering dihidrolisis dengan enzim papain pada suhu terkontrol 55°C selama 6 jam untuk menghasilkan kolagen peptida murni.', loc: 'Lab Bioekstraksi RE-OCEAN' },
+      { title: 'Ekstraksi Kolagen Sisik', desc: 'Sisik ikan kering dihidrolisis dengan enzim papain pada suhu terkontrol 55°C selama 6 jam untuk menghasilkan kolagen peptida murni.', loc: 'Lab Bioekstraksi LAMURI' },
       { title: 'Purifikasi Multi-tahap', desc: 'Kolagen dimurnikan melalui ultrafiltrasi membran, dikeringkan dengan spray-drying pada suhu rendah untuk menjaga aktivitas biologis.', loc: 'Fasilitas Purifikasi Kelas C' },
       { title: 'Pengujian Kualitas', desc: 'Setiap batch diuji kandungan kolagen, logam berat, dan mikrobiologi oleh BPOM dan laboratorium independen terakreditasi.', loc: 'Lab Uji BPOM Aceh' },
       { title: 'Enkapsulasi', desc: 'Kolagen dikemas dalam kapsul vegetarian ukuran 00, isi 500mg per kapsul, 60 kapsul per botol. Bebas gelatin babi.', loc: 'Fasilitas Farmasi GMP' }
@@ -86,7 +112,7 @@ const PRODUCTS = [
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&h=280&q=80',
     description: 'Gelang cantik dari sisik ikan asli dengan pewarna alami. Setiap gelang adalah karya seni unik yang tidak ada duanya.',
     journey: [
-      { title: 'Seleksi Sisik Terbaik', desc: 'Hanya sisik berukuran > 1.5cm dengan kilap alami yang dipilih — biasanya dari ikan kerapu dan kakap merah.', loc: 'Hub Pengolahan RE-OCEAN' },
+      { title: 'Seleksi Sisik Terbaik', desc: 'Hanya sisik berukuran > 1.5cm dengan kilap alami yang dipilih — biasanya dari ikan kerapu dan kakap merah.', loc: 'Toko Penjual Pengolahan LAMURI' },
       { title: 'Pembersihan dan Sterilisasi', desc: 'Sisik dibersihkan dengan ultrasonik, disterilkan UV, dan dikeringkan dalam kondisi terkontrol untuk mempertahankan kilap alami.', loc: 'Workshop Artisan' },
       { title: 'Pewarnaan Etis', desc: 'Diwarnai dengan pigmen alami dari tumbuhan lokal Aceh — kunyit (kuning), indigo (biru), dan campuran bebas logam berat.', loc: 'Laboratorium Pewarna Alami' },
       { title: 'Perakitan Handmade', desc: 'Pengrajin merangkai setiap sisik dengan kawat tembaga food-safe. Setiap gelang dilengkapi sertifikat keaslian dan kisah pengrajinnya.', loc: 'Atelier Karya Pesisir, Banda Aceh' }
@@ -100,7 +126,7 @@ const PRODUCTS = [
     image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&h=280&q=80',
     description: 'Sabun cold-process dari minyak hati ikan. Kaya omega-3 dan vitamin D — melembapkan, mencerahkan, dan merawat kulit kering.',
     journey: [
-      { title: 'Ekstraksi Minyak Hati Ikan', desc: 'Minyak diekstraksi dari hati ikan segar menggunakan metode wet rendering suhu rendah (60°C) untuk mempertahankan nutrisi sensitif panas.', loc: 'Fasilitas Ekstraksi RE-OCEAN' },
+      { title: 'Ekstraksi Minyak Hati Ikan', desc: 'Minyak diekstraksi dari hati ikan segar menggunakan metode wet rendering suhu rendah (60°C) untuk mempertahankan nutrisi sensitif panas.', loc: 'Fasilitas Ekstraksi LAMURI' },
       { title: 'Pemurnian dan Deodorisasi', desc: 'Minyak mentah dimurnikan dengan karbon aktif dan divolatilisasi untuk menghilangkan bau amis — hasilnya minyak jernih tak berbau.', loc: 'Lab Pemurnian Minyak' },
       { title: 'Formulasi Sabun Cold-Process', desc: 'Minyak ikan dicampur minyak kelapa, NaOH pharma-grade, dan essensial oil lavender. Proses saponifikasi berlangsung 48 jam alami.', loc: 'Soap Kitchen Pure Aceh' },
       { title: 'Curing 4 Minggu', desc: 'Sabun dikeringkan 4 minggu dalam ruang sirkulasi udara — memastikan pH sempurna (8-9) dan konsistensi bar optimal sebelum dikemas.', loc: 'Curing Room Pure Aceh' }
@@ -114,10 +140,10 @@ const PRODUCTS = [
     image: 'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=400&h=280&q=80',
     description: 'Kompos granular dari tulang ikan fermentasi. Kandungan kalsium dan fosfor tinggi — memperkuat akar tanaman dan meningkatkan hasil panen.',
     journey: [
-      { title: 'Pengumpulan Tulang Ikan', desc: 'Tulang dari berbagai spesies dikumpulkan setelah proses fillet dan pemisahan daging. Tidak ada tulang bercampur plastik atau logam.', loc: 'Hub Ulee Lheue RE-OCEAN' },
+      { title: 'Pengumpulan Tulang Ikan', desc: 'Tulang dari berbagai spesies dikumpulkan setelah proses fillet dan pemisahan daging. Tidak ada tulang bercampur plastik atau logam.', loc: 'Toko Penjual Ulee Lheue LAMURI' },
       { title: 'Perebusan dan Penghalusan', desc: 'Tulang direbus 2 jam untuk sterilisasi, kemudian dihancurkan menjadi tepung kasar menggunakan hammer mill.', loc: 'Fasilitas Pengolahan' },
       { title: 'Komposting Aerobik', desc: 'Tepung tulang dicampur sekam, jerami, dan mikroba Trichoderma. Dikomposekan 30 hari dengan pembalikan setiap 3 hari.', loc: 'Kompos Facility GreenAceh' },
-      { title: 'Granulasi dan Pengemasan', desc: 'Kompos matang digranulasi ukuran 2-4mm, dikemas 2kg dengan analisis kandungan Ca, P, dan pH untuk kemudahan aplikasi.', loc: 'Fasilitas Granulasi RE-OCEAN' }
+      { title: 'Granulasi dan Pengemasan', desc: 'Kompos matang digranulasi ukuran 2-4mm, dikemas 2kg dengan analisis kandungan Ca, P, dan pH untuk kemudahan aplikasi.', loc: 'Fasilitas Granulasi LAMURI' }
     ]
   },
   {
@@ -139,15 +165,15 @@ const PRODUCTS = [
     id: 10, name: 'Kulit Ikan Tenggiri Mentah (Grade A)', mainType: 'limbah',
     category: 'kulit', price: 15000, oldPrice: 18000,
     rating: 4.6, sold: 1200, stock: 80,
-    seller: 'Hub Ulee Lheue',
+    seller: 'Toko Penjual Ulee Lheue',
     image: 'https://images.unsplash.com/photo-1596700755913-9111e1f7a077?auto=format&fit=crop&w=400&h=280&q=80',
     badge: 'Segar', badgeType: 'badge-blue',
     description: 'Kulit ikan tenggiri mentah bersih hasil sisa fillet. Cocok untuk bahan baku kerupuk kulit, ekstraksi kolagen, atau kerajinan.',
     journey: [
       { title: 'Fillet Ikan', desc: 'Pemrosesan ikan tenggiri segar dari nelayan untuk kebutuhan daging konsumsi.', loc: 'Pelabuhan Lampulo' },
       { title: 'Pemisahan Kulit', desc: 'Kulit dipisahkan dengan hati-hati, bebas sisa daging, dan langsung dicuci dengan air dingin mengalir.', loc: 'Fasilitas Fillet' },
-      { title: 'Penyimpanan Dingin', desc: 'Disimpan pada suhu -20°C untuk menjaga kualitas sebelum dikirim ke pembeli.', loc: 'Cold Storage RE-OCEAN' },
-      { title: 'Pengiriman', desc: 'Dikemas dalam box styrofoam dengan dry ice untuk menjamin kesegaran sampai ke tangan Anda.', loc: 'Hub Logistik' }
+      { title: 'Penyimpanan Dingin', desc: 'Disimpan pada suhu -20°C untuk menjaga kualitas sebelum dikirim ke pembeli.', loc: 'Cold Storage LAMURI' },
+      { title: 'Pengiriman', desc: 'Dikemas dalam box styrofoam dengan dry ice untuk menjamin kesegaran sampai ke tangan Anda.', loc: 'Toko Penjual Logistik' }
     ]
   },
   {
@@ -161,7 +187,7 @@ const PRODUCTS = [
       { title: 'Pengumpulan Limbah', desc: 'Sisa potongan tulang dan kepala ikan kakap dikumpulkan langsung setelah fillet.', loc: 'Pasar Ikan Peunayong' },
       { title: 'Pembersihan', desc: 'Dibersihkan dari kotoran dan insang untuk mengurangi bau dan menjaga higienitas bahan baku.', loc: 'Area Pembersihan' },
       { title: 'Pengemasan', desc: 'Dikemas per 5kg dalam plastik vakum dan dibekukan.', loc: 'Gudang Penyimpanan' },
-      { title: 'Distribusi', desc: 'Siap dikirim ke industri pakan, pengrajin kaldu, atau pembuat kompos.', loc: 'Hub Distribusi' }
+      { title: 'Distribusi', desc: 'Siap dikirim ke industri pakan, pengrajin kaldu, atau pembuat kompos.', loc: 'Toko Penjual Distribusi' }
     ]
   },
   {
@@ -176,7 +202,7 @@ const PRODUCTS = [
       { title: 'Pengumpulan Sisik', desc: 'Sisik ikan kerapu besar dikumpulkan sesaat setelah ikan merapat di dermaga.', loc: 'TPI Lampulo' },
       { title: 'Pencucian', desc: 'Dicuci dengan air mengalir dan disikat ringan untuk membuang sisa lendir.', loc: 'Area Pembersihan' },
       { title: 'Pengeringan', desc: 'Dijemur di bawah sinar matahari langsung selama 2 hari hingga kadar air < 12%.', loc: 'Sentra Pengeringan' },
-      { title: 'Distribusi', desc: 'Dikemas aman dalam kantong ziplock dan siap dikirim ke pengrajin seluruh Indonesia.', loc: 'Hub Distribusi' }
+      { title: 'Distribusi', desc: 'Dikemas aman dalam kantong ziplock dan siap dikirim ke pengrajin seluruh Indonesia.', loc: 'Toko Penjual Distribusi' }
     ]
   }
 ];
@@ -279,13 +305,24 @@ function renderProducts() {
           ${p.badge ? `<span class="badge ${p.badgeType || 'badge-light'}">${p.badge}</span>` : ''}
           ${p.stock < 15 ? `<span class="badge badge-red">Stok Terbatas</span>` : ''}
         </div>
+        <!-- Traceability Badge overlay -->
+        <div style="position:absolute; bottom:10px; right:10px; background:rgba(255,255,255,0.9); color:var(--ocean-darkest); font-size:0.65rem; font-weight:700; padding:4px 8px; border-radius:4px; display:flex; align-items:center; gap:4px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Jejak Ekologis
+        </div>
         <button class="product-wish ${wishlist.has(p.id) ? 'liked' : ''}" data-id="${p.id}" aria-label="Simpan ke wishlist">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
       </div>
       <div class="product-body">
-        <div class="product-cat">${categoryLabel(p.category)}</div>
-        <div class="product-name">${p.name}</div>
+        <div class="product-info">
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px; display:flex; align-items:center; gap:4px;">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Toko: ${p.seller}
+          </div>
+          <div class="product-cat">${categoryLabel(p.category)}</div>
+          <div class="product-name">${p.name}</div>
+        </div>
         <div class="product-meta">
           <span class="product-stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
           <span class="product-rating">${p.rating}</span>
@@ -312,10 +349,10 @@ function renderProducts() {
 
   // Attach events
   grid.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.product-wish') || e.target.closest('.add-btn')) return;
-      openJourney(parseInt(card.dataset.id));
-    });
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.product-wish') || e.target.closest('.add-btn')) return;
+        window.location.href = `produk.html?id=${card.dataset.id}`;
+      });
   });
 
   grid.querySelectorAll('.product-wish').forEach(btn => {
@@ -356,56 +393,6 @@ function categoryLabel(cat) {
   return map[cat] || cat;
 }
 
-// ── Journey Modal ─────────────────────────────────────────────
-function openJourney(id) {
-  const product = PRODUCTS.find(p => p.id === id);
-  if (!product) return;
-
-  document.getElementById('modal-img').src = product.image;
-  document.getElementById('modal-img').alt = product.name;
-  document.getElementById('modal-name').textContent = product.name;
-  document.getElementById('modal-price').textContent = 'Rp ' + product.price.toLocaleString('id-ID');
-
-  const svgIcons = [
-    '<path d="M3 11l19-9-9 19-2-8-8-2z"/>',
-    '<path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>',
-    '<circle cx="12" cy="12" r="10"/><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/>',
-    '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>'
-  ];
-
-  const timeline = document.getElementById('journey-timeline');
-  timeline.innerHTML = product.journey.map((step, i) => `
-    <div class="journey-step" style="animation-delay:${i * 0.1}s;">
-      <div class="journey-icon">
-        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;">${svgIcons[i] || svgIcons[0]}</svg>
-      </div>
-      <div class="journey-body">
-        <h4>${step.title}</h4>
-        <p>${step.desc}</p>
-        <div class="journey-loc">${step.loc}</div>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('journey-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  // Wire buttons
-  const btnDetail = document.getElementById('modal-btn-detail');
-  if (btnDetail) {
-    btnDetail.onclick = () => window.location.href = `produk.html?id=${id}`;
-  }
-
-  const btnCart = document.getElementById('modal-btn-cart');
-  if (btnCart) {
-    btnCart.onclick = () => {
-      cartCount++;
-      showToast('Berhasil ditambahkan ke keranjang', 'success');
-      document.getElementById('journey-modal').classList.remove('open');
-      document.body.style.overflow = '';
-    };
-  }
-}
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -445,6 +432,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderSubcategories();
 
+  // Initialize the banner properly
+  setTimeout(() => {
+    document.querySelector('.main-side-btn.active')?.click();
+  }, 100);
+
   // Main Tabs (Top & Side)
   document.querySelectorAll('.main-tab-btn, .main-side-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -466,6 +458,36 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.main-side-btn').forEach(t => {
         t.classList.toggle('active', t.dataset.main === activeMain);
       });
+
+      // Update Info Banner
+      const infoBanner = document.getElementById('marketplace-info-banner');
+      const bannerTitle = document.getElementById('banner-title');
+      const bannerText = document.getElementById('banner-text');
+      const bannerIcon = document.getElementById('banner-icon');
+
+      if (infoBanner && bannerTitle && bannerText && bannerIcon) {
+        if (activeMain === 'limbah') {
+          infoBanner.style.display = 'block';
+          infoBanner.style.backgroundColor = '#fffbeb'; // yellow-50
+          infoBanner.style.borderLeftColor = '#f59e0b'; // amber-500
+          bannerIcon.style.color = '#d97706'; // amber-600
+          bannerIcon.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+          bannerTitle.innerText = 'Info Pengiriman Limbah Mentah';
+          bannerTitle.style.color = '#92400e';
+          bannerText.innerHTML = 'Karena sifatnya yang mudah busuk, limbah mentah hanya melayani <strong>Pick-Up (Ambil Sendiri)</strong> atau <strong>Pengiriman Instan</strong> dalam radius 15km dari Toko Penjual untuk menjaga kesegaran dan kebersihan.';
+        } else if (activeMain === 'olahan') {
+          infoBanner.style.display = 'block';
+          infoBanner.style.backgroundColor = '#f0fdf4'; // green-50
+          infoBanner.style.borderLeftColor = '#22c55e'; // green-500
+          bannerIcon.style.color = '#16a34a'; // green-600
+          bannerIcon.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>';
+          bannerTitle.innerText = 'Smart Bulk Order Aktif';
+          bannerTitle.style.color = '#166534';
+          bannerText.innerHTML = 'Gunakan fitur <strong>Smart Bulk Order</strong>. Jika Anda membeli dalam jumlah tonase besar, sistem kami otomatis mengumpulkan (agregasi) stok dari berbagai toko mitra terdekat sekaligus.';
+        } else {
+          infoBanner.style.display = 'none';
+        }
+      }
 
       renderSubcategories();
       renderProducts();
@@ -497,18 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Stock filter
   document.getElementById('stock-available')?.addEventListener('change', renderProducts);
 
-  // Modal close
-  document.getElementById('modal-close')?.addEventListener('click', () => {
-    document.getElementById('journey-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  });
 
-  document.getElementById('journey-modal')?.addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) {
-      document.getElementById('journey-modal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
 
   // Reset filter
   document.getElementById('sidebar-reset')?.addEventListener('click', () => {

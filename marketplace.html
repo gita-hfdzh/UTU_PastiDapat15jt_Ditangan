@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketplace | RE-OCEAN</title>
+  <title>Marketplace | LAMURI</title>
   <link rel="stylesheet" href="css/global.css?v=13">
   <link rel="stylesheet" href="css/marketplace.css?v=13">
 </head>
@@ -14,7 +14,7 @@
         <div class="nav-logo-mark">
           <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
         </div>
-        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+        <span class="nav-logo-text">LAMURI</span>
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Beranda</a></li>
@@ -128,6 +128,22 @@
     <div class="mp-main">
       <div class="mp-toolbar">
         <div class="mp-count" id="mp-count">Menampilkan <strong>9</strong> produk</div>
+      </div>
+      
+      <!-- Info Banner Dinamis -->
+      <div id="marketplace-info-banner" style="background-color: var(--teal-50); border-left: 4px solid var(--teal-500); padding: 16px; margin-bottom: 24px; border-radius: 4px; display: none;">
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div id="banner-icon" style="color: var(--teal-600); margin-top: 2px;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <h4 id="banner-title" style="margin: 0 0 4px 0; color: var(--navy-800); font-size: 1rem;">Judul Banner</h4>
+            <p id="banner-text" style="margin: 0; color: var(--text-body); font-size: 0.85rem; line-height: 1.5;">Teks banner...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mp-toolbar" style="justify-content: flex-end; margin-bottom: 16px;">
         <div class="mp-right-bar">
           <select class="sort-select" id="mp-sort">
             <option value="best-seller">Koleksi Terlaris</option>
@@ -137,49 +153,18 @@
           </select>
         </div>
       </div>
+
       <div class="products-grid" id="products-grid">
         <!-- Rendered by JS -->
       </div>
     </div>
   </div>
 
-  <!-- Journey Modal -->
-  <div class="modal-overlay" id="journey-modal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div class="modal-product-info">
-          <img id="modal-img" src="" alt="Produk" class="modal-product-img">
-          <div>
-            <div class="modal-product-name" id="modal-name">Nama Produk</div>
-            <div class="modal-product-price" id="modal-price">Rp 0</div>
-          </div>
-        </div>
-        <button class="modal-close" id="modal-close">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="journey-label">Jejak Transformasi — Dari Laut Menjadi Bernilai</div>
-        <div class="journey-timeline" id="journey-timeline"></div>
-        <div class="modal-actions" style="flex-direction: column; gap: 12px;">
-          <div style="display:flex; gap:16px;">
-            <button class="btn btn-navy" style="flex:1;" id="modal-btn-detail">
-              Lihat Detail Produk
-            </button>
-            <button class="btn btn-outline-dark" id="modal-btn-cart">
-              + Keranjang
-            </button>
-          </div>
-          <button class="btn btn-outline-dark" style="width:100%; border-color:#25D366; color:#25D366;" onclick="window.open('https://wa.me/6281234567890', '_blank')">💬 Hubungi Penjual</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>© 2026 RE-OCEAN — Marketplace Produk Limbah Ikan Premium</p>
+        <p>© 2026 LAMURI — Marketplace Produk Limbah Ikan Premium</p>
         <div style="display:flex;gap:24px;">
           <a href="index.html">Beranda</a>
           <a href="lokasi.html">Lokasi</a>

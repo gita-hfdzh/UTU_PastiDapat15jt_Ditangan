@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail Produk | RE-OCEAN</title>
-  <link rel="stylesheet" href="css/global.css?v=12">
+  <title>Detail Produk | LAMURI</title>
+  <link rel="stylesheet" href="css/global.css?v=54">
   <link rel="stylesheet" href="css/marketplace.css?v=12">
   <style>
     .product-page { padding: calc(var(--nav-height) + 40px) 0 80px; background: var(--bg-main); min-height: 100vh; }
@@ -41,7 +41,7 @@
         <div class="nav-logo-mark">
           <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
         </div>
-        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+        <span class="nav-logo-text">LAMURI</span>
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Beranda</a></li>
@@ -63,7 +63,18 @@
 
       <div class="product-detail-grid">
         <div class="prod-image-col">
-          <img src="https://images.unsplash.com/photo-1558231908-1678be8cde47?auto=format&fit=crop&w=800&q=80" alt="Produk" id="prod-img" class="prod-main-img">
+          <img src="https://images.unsplash.com/photo-1558231908-1678be8cde47?auto=format&fit=crop&w=800&q=80" alt="Produk" id="prod-img" class="prod-main-img" style="margin-bottom: 32px;">
+          
+          <div class="journey-box">
+            <h3>Jejak Transformasi Sirkular ♻️</h3>
+            <p style="font-size: 0.95rem; color: var(--text-body); margin-bottom: 16px;">
+              Produk ini adalah hasil dari daur ulang limbah laut. Lihat bagaimana produk ini bertransformasi:
+            </p>
+            <div class="journey-timeline" id="prod-journey" style="margin: 0; padding: 0;">
+              <!-- Rendered by JS -->
+              <div style="font-size:0.9rem; color:var(--text-muted);">Memuat jejak...</div>
+            </div>
+          </div>
         </div>
         <div class="prod-info-col">
           <div class="section-label" id="prod-cat" style="margin-bottom: 12px; display: inline-block;">Kategori</div>
@@ -97,25 +108,32 @@
             Ini adalah deskripsi produk. Produk ini diolah dari limbah ikan segar dengan standar premium untuk mendukung ekonomi sirkular.
           </div>
 
-          <div class="prod-actions" style="margin-bottom: 16px;">
+            <div style="margin-bottom: 24px;">
+              <label style="display:block; font-size:0.9rem; font-weight:600; color:var(--navy-800); margin-bottom:8px;">Jumlah Pembelian (Kg)</label>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <input type="number" id="qty-input" value="1" min="1" class="form-input" style="width:100px; padding:12px; font-size:1.1rem; text-align:center;">
+                <span style="font-size:0.9rem; color:var(--text-muted);">Tersedia <span id="prod-stock-label">...</span> Kg</span>
+              </div>
+            </div>
+
+            <!-- Smart Bulk Order Banner (Hidden by default) -->
+            <div id="bulk-banner" style="display:none; background-color:#f0fdf4; border-left:4px solid #22c55e; padding:12px 16px; border-radius:4px; margin-bottom:24px;">
+              <h5 style="margin:0 0 4px 0; color:#166534; font-size:0.95rem; display:flex; align-items:center; gap:6px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
+                Smart Bulk Order Aktif
+              </h5>
+              <p style="margin:0; font-size:0.8rem; color:#15803d; line-height:1.4;">Pesanan partai besar terdeteksi. Sistem akan mengumpulkan (agregasi) sisa stok dari toko mitra terdekat secara otomatis.</p>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-bottom: 20px;">
             <a href="keranjang.html" class="btn btn-outline-dark btn-buy" onclick="alert('Ditambahkan ke keranjang!'); return true;">+ Keranjang</a>
             <a href="checkout.html" class="btn btn-ocean btn-buy">Beli Sekarang</a>
           </div>
           
           <div style="margin-bottom: 40px;">
-            <button class="btn btn-outline-dark" style="width:100%; border-color:#25D366; color:#25D366;" onclick="window.open('https://wa.me/6281234567890', '_blank')">💬 Hubungi Penjual (WA)</button>
+            <button class="btn btn-outline-dark" style="width:100%; border-color:#25D366; color:#25D366;" id="btn-open-chat">💬 Chat Penjual</button>
           </div>
 
-          <div class="journey-box">
-            <h3>Jejak Transformasi Sirkular ♻️</h3>
-            <p style="font-size: 0.95rem; color: var(--text-body); margin-bottom: 16px;">
-              Produk ini adalah hasil dari daur ulang limbah laut. Lihat bagaimana produk ini bertransformasi:
-            </p>
-            <div class="journey-timeline" id="prod-journey" style="margin: 0; padding: 0;">
-              <!-- Rendered by JS -->
-              <div style="font-size:0.9rem; color:var(--text-muted);">Memuat jejak...</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -124,10 +142,44 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>© 2026 RE-OCEAN — Ekosistem Sirkular Limbah Ikan Premium</p>
+        <p>© 2026 LAMURI — Ekosistem Sirkular Limbah Ikan Premium</p>
       </div>
     </div>
   </footer>
+
+  <!-- Chat Overlay -->
+  <div class="chat-overlay" id="chat-overlay"></div>
+
+  <!-- Chat Drawer -->
+  <div class="chat-drawer" id="chat-drawer">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar" id="chat-avatar-letter">T</div>
+        <div>
+          <div class="chat-seller-name" id="chat-seller-name-ui">Toko Penjual</div>
+          <div class="chat-status">Online</div>
+        </div>
+      </div>
+      <button class="chat-close" id="chat-close">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="chat-body" id="chat-body">
+      <!-- Default initial message -->
+      <div class="chat-bubble received">
+        Halo! Ada yang bisa kami bantu terkait produk ini? 🌿
+        <div class="chat-time">10:00</div>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Ketik pesan Anda...">
+      <button class="chat-send-btn" id="chat-send-btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
   <!-- Load PRODUCTS data to render correctly -->
@@ -143,7 +195,7 @@
         if (!id || isNaN(id)) id = 1; // Fallback to first product
         const prod = PRODUCTS.find(p => p.id === id);
         if (prod) {
-          document.title = prod.name + ' | RE-OCEAN';
+          document.title = prod.name + ' | LAMURI';
           document.getElementById('bc-name').textContent = prod.name;
           document.getElementById('prod-img').src = prod.image;
           document.getElementById('prod-cat').textContent = categoryLabel(prod.category).toUpperCase();
@@ -151,8 +203,26 @@
           document.getElementById('prod-desc').textContent = prod.description;
           document.getElementById('prod-rating-val').textContent = prod.rating;
           document.getElementById('prod-sold').textContent = 'Terjual ' + prod.sold;
-          document.getElementById('prod-seller').textContent = prod.seller || 'Mitra RE-OCEAN';
-          document.getElementById('prod-stock').textContent = (prod.stock || Math.floor(Math.random() * 50) + 1) + ' buah';
+          document.getElementById('prod-seller').textContent = prod.seller || 'Mitra LAMURI';
+          
+          // Stock and Smart Bulk Order Logic
+          const stockVal = prod.stock || Math.floor(Math.random() * 50) + 1;
+          document.getElementById('prod-stock').textContent = stockVal + ' buah';
+          const stockLabel = document.getElementById('prod-stock-label');
+          if (stockLabel) stockLabel.innerText = stockVal;
+          
+          const qtyInput = document.getElementById('qty-input');
+          const bulkBanner = document.getElementById('bulk-banner');
+          if (qtyInput && bulkBanner) {
+            qtyInput.addEventListener('input', (e) => {
+              let val = parseInt(e.target.value);
+              if (val > 50) {
+                bulkBanner.style.display = 'block';
+              } else {
+                bulkBanner.style.display = 'none';
+              }
+            });
+          }
           
           const originMap = {
             'Dapur Pesisir Aceh': 'Banda Aceh',
@@ -161,7 +231,7 @@
             'Biohealth Aceh': 'Lhokseumawe',
             'AquaFeed Aceh': 'Bireuen',
             'Pure Aceh Skincare': 'Pidie',
-            'Hub Ulee Lheue': 'Banda Aceh'
+            'Toko Penjual Ulee Lheue': 'Banda Aceh'
           };
           document.getElementById('prod-origin').textContent = originMap[prod.seller] || 'Aceh, Indonesia';
 
@@ -201,6 +271,65 @@
           `).join('');
         }
       }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnOpen = document.getElementById('btn-open-chat');
+      const drawer = document.getElementById('chat-drawer');
+      const overlay = document.getElementById('chat-overlay');
+      const btnClose = document.getElementById('chat-close');
+      const input = document.getElementById('chat-input');
+      const btnSend = document.getElementById('chat-send-btn');
+      const body = document.getElementById('chat-body');
+
+      function openChat() {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        
+        // Sync seller name from product details
+        const sellerName = document.getElementById('prod-seller')?.innerText || 'Toko Penjual';
+        document.getElementById('chat-seller-name-ui').innerText = sellerName;
+        document.getElementById('chat-avatar-letter').innerText = sellerName.charAt(0).toUpperCase();
+      }
+
+      function closeChat() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+
+      function sendMessage() {
+        const text = input.value.trim();
+        if(!text) return;
+        
+        const now = new Date();
+        const time = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble sent';
+        bubble.innerHTML = text + '<div class="chat-time">' + time + '</div>';
+        
+        body.appendChild(bubble);
+        input.value = '';
+        body.scrollTop = body.scrollHeight;
+
+        // Mock reply
+        setTimeout(() => {
+          const reply = document.createElement('div');
+          reply.className = 'chat-bubble received';
+          reply.innerHTML = 'Baik kak, akan segera kami proses pesanannya ya. Terima kasih! 🙏 <div class="chat-time">' + time + '</div>';
+          body.appendChild(reply);
+          body.scrollTop = body.scrollHeight;
+        }, 1500);
+      }
+
+      if(btnOpen) btnOpen.addEventListener('click', openChat);
+      if(btnClose) btnClose.addEventListener('click', closeChat);
+      if(overlay) overlay.addEventListener('click', closeChat);
+      if(btnSend) btnSend.addEventListener('click', sendMessage);
+      if(input) input.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') sendMessage();
+      });
     });
   </script>
 </body>

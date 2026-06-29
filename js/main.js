@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — main.js
+   LAMURI — main.js
    Shared utilities: nav scroll, reveal, counter, mobile menu
    ============================================================= */
 
@@ -171,11 +171,11 @@ function initPreviewMap() {
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-  // Hub markers
+  // Toko Penjual markers
   const hubs = [
-    { pos: [5.548, 95.3238], name: 'Hub Ulee Lheue' },
-    { pos: [5.555, 95.344],  name: 'Hub Peunayong' },
-    { pos: [5.504, 95.298],  name: 'Hub Lampuuk' }
+    { pos: [5.548, 95.3238], name: 'Toko Penjual Ulee Lheue' },
+    { pos: [5.555, 95.344],  name: 'Toko Penjual Peunayong' },
+    { pos: [5.504, 95.298],  name: 'Toko Penjual Lampuuk' }
   ];
 
   const icon = L.divIcon({

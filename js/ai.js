@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — SEA AI Assistant JS
+   LAMURI — SEA AI Assistant JS
    Smart Ecological Assistant — Not a basic chatbot.
    ============================================================= */
 
@@ -8,11 +8,11 @@
 const SEA_KNOWLEDGE = {
   greetings: {
     triggers: ['halo', 'hai', 'hello', 'hi', 'selamat', 'assalamualaikum', 'pagi', 'siang', 'malam', 'sore'],
-    response: () => `Wa'alaikumsalam! 🌊 Selamat datang di **SEA** — Smart Ecological Assistant dari RE-OCEAN.
+    response: () => `Wa'alaikumsalam! 🌊 Selamat datang di **SEA** — Smart Ecological Assistant dari LAMURI.
 
 Saya siap membantu Anda dengan:
 - 🐟 **Pengolahan limbah ikan** (sisik, tulang, kulit, minyak)
-- 🛒 **Panduan jual-beli** di platform RE-OCEAN
+- 🛒 **Panduan jual-beli** di platform LAMURI
 - 🌿 **Informasi nilai gizi & produk** olahan
 - 💡 **Rekomendasi bisnis** berbasis ekonomi sirkular
 - 🎓 **Edukasi** seputar limbah laut & SDGs
@@ -73,7 +73,7 @@ Sisik ikan adalah **limbah paling undervalued** di industri perikanan, padahal n
 - Sisik mentah kering: **Rp 15.000-25.000**
 - Kolagen ekstrak: **Rp 200.000-500.000**
 
-Mau tahu cara daftar jadi mitra penjual di RE-OCEAN? 🚀`
+Mau tahu cara daftar jadi mitra penjual di LAMURI? 🚀`
   },
 
   tulang: {
@@ -136,7 +136,7 @@ Butuh panduan teknis lebih detail? Saya bisa bantu! 🌊`
 
   daftar: {
     triggers: ['daftar', 'registrasi', 'cara jual', 'jadi penjual', 'mitra', 'bergabung'],
-    response: () => `## 🚀 Cara Bergabung sebagai Mitra RE-OCEAN
+    response: () => `## 🚀 Cara Bergabung sebagai Mitra LAMURI
 
 Proses pendaftaran sangat mudah dan **GRATIS**! Berikut langkah-langkahnya:
 
@@ -150,7 +150,7 @@ Proses pendaftaran sangat mudah dan **GRATIS**! Berikut langkah-langkahnya:
 1. **Klik "Mulai Jual"** di halaman Marketplace
 2. Isi formulir profil penjual (5 menit)
 3. Upload foto produk & dokumen
-4. **Verifikasi tim RE-OCEAN** (1-2 hari kerja)
+4. **Verifikasi tim LAMURI** (1-2 hari kerja)
 5. Akun aktif — mulai berjualan! 🎉
 
 ### Keuntungan Menjadi Mitra:
@@ -165,19 +165,19 @@ Proses pendaftaran sangat mudah dan **GRATIS**! Berikut langkah-langkahnya:
 |------|------------|
 | 🎣 Nelayan Hulu | Pasok limbah mentah |
 | 🏭 Pengolah | Buat produk jadi |
-| 🛍️ Reseller | Jual produk RE-OCEAN |
+| 🛍️ Reseller | Jual produk LAMURI |
 
 Ada pertanyaan lain tentang pendaftaran? 😊`
   },
 
   sdgs: {
     triggers: ['sdgs', 'sdg', 'pembangunan berkelanjutan', 'lingkungan', 'ocean', 'ekosistem laut', 'sdg 14'],
-    response: () => `## 🌍 RE-OCEAN & Sustainable Development Goals (SDGs)
+    response: () => `## 🌍 LAMURI & Sustainable Development Goals (SDGs)
 
-RE-OCEAN secara langsung berkontribusi pada **5 poin SDGs PBB**:
+LAMURI secara langsung berkontribusi pada **5 poin SDGs PBB**:
 
 ### 🌊 SDG 14 — Life Below Water (Prioritas Utama)
-Dengan mengurangi limbah ikan yang dibuang ke laut, RE-OCEAN membantu:
+Dengan mengurangi limbah ikan yang dibuang ke laut, LAMURI membantu:
 - ↓ Pencemaran laut dari limbah organik
 - ↓ Eutrofikasi (ledakan alga) di pesisir
 - ↑ Kesehatan ekosistem terumbu karang
@@ -198,23 +198,23 @@ Dengan mengurangi limbah ikan yang dibuang ke laut, RE-OCEAN membantu:
 ### 🤝 SDG 17 — Partnerships for the Goals
 - Kolaborasi dengan universitas, pemerintah, dan industri
 
-*RE-OCEAN telah divalidasi oleh tim riset UTU sebagai model bisnis circular economy yang terstandar.*`
+*LAMURI telah divalidasi oleh tim riset UTU sebagai model bisnis circular economy yang terstandar.*`
   },
 
   ekonomi_sirkular: {
     triggers: ['ekonomi sirkular', 'circular economy', 'daur ulang', 'zero waste', 'upcycling'],
-    response: () => `## ♻️ Ekonomi Sirkular dalam Model Bisnis RE-OCEAN
+    response: () => `## ♻️ Ekonomi Sirkular dalam Model Bisnis LAMURI
 
 Ekonomi sirkular adalah sistem di mana **tidak ada yang disebut "sampah"** — setiap output adalah input untuk proses berikutnya.
 
-### Alur Sirkular RE-OCEAN:
+### Alur Sirkular LAMURI:
 
 \`\`\`
 Laut → Nelayan → Pengolah Ikan
          ↓              ↓
     Limbah Ikan    Produk Ikan
          ↓              ↓
-   RE-OCEAN Hub ← Konsumen
+   Toko Penjual ← Konsumen
          ↓
   Produk Bernilai Tinggi:
   Keripik, Kolagen, Pupuk, Kerajinan
@@ -239,7 +239,7 @@ Ingin perhitungan lebih spesifik untuk jenis ikan Anda? Tanyakan! 📊`
 
   harga: {
     triggers: ['harga', 'berapa harga', 'tarif', 'price', 'biaya', 'berapa jual'],
-    response: () => `## 💰 Panduan Harga Produk RE-OCEAN
+    response: () => `## 💰 Panduan Harga Produk LAMURI
 
 Berikut daftar harga referensi di platform kami:
 
@@ -278,9 +278,9 @@ Butuh penawaran **bulk order**? Hubungi tim kami! 📦`
 
   nelayan: {
     triggers: ['nelayan', 'petani ikan', 'pembudidaya', 'kapal', 'tangkap ikan'],
-    response: () => `## 🎣 Program Khusus Nelayan RE-OCEAN
+    response: () => `## 🎣 Program Khusus Nelayan LAMURI
 
-RE-OCEAN hadir untuk **memberdayakan nelayan** pesisir, bukan hanya pembeli!
+LAMURI hadir untuk **memberdayakan nelayan** pesisir, bukan hanya pembeli!
 
 ### Manfaat untuk Nelayan:
 1. **💵 Pendapatan Tambahan**: Jual limbah yang sebelumnya dibuang
@@ -294,7 +294,7 @@ RE-OCEAN hadir untuk **memberdayakan nelayan** pesisir, bukan hanya pembeli!
    - Digital marketing
    
 3. **🚐 Pickup Limbah**:
-   - Tim RE-OCEAN akan **menjemput limbah** dari dermaga
+   - Tim LAMURI akan **menjemput limbah** dari dermaga
    - Tidak perlu repot-repot antar sendiri
    
 4. **💳 Pembayaran Cepat**:
@@ -303,7 +303,7 @@ RE-OCEAN hadir untuk **memberdayakan nelayan** pesisir, bukan hanya pembeli!
 
 ### Cara Mulai:
 1. Foto limbah ikan Anda 📸
-2. WhatsApp ke nomor RE-OCEAN Hub terdekat
+2. WhatsApp ke nomor Toko Penjual terdekat
 3. Tentukan jadwal pickup
 4. Terima pembayaran! 💰
 
@@ -317,7 +317,7 @@ Saya memahami pertanyaan Anda, namun saya butuh konteks lebih spesifik untuk mem
 
 Mungkin maksud Anda adalah salah satu dari ini?
 - 🐟 Cara **mengolah limbah ikan** (sisik, tulang, kulit, minyak)
-- 🛒 **Cara berjualan** di platform RE-OCEAN
+- 🛒 **Cara berjualan** di platform LAMURI
 - 💰 **Informasi harga** produk & limbah
 - 🌿 **Manfaat & kandungan** produk olahan
 - 🌍 Dampak bisnis terhadap **lingkungan & SDGs**
@@ -337,7 +337,7 @@ let conversationHistory = [
   },
   {
     id: 'conv-2',
-    title: 'Harga limbah ikan di RE-OCEAN',
+    title: 'Harga limbah ikan di LAMURI',
     time: 'Kemarin',
     icon: '💰',
     messages: []

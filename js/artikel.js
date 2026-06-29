@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — Artikel JS
+   LAMURI — Artikel JS
    ============================================================= */
 
 // ── Article Data ──────────────────────────────────────────────
@@ -29,11 +29,11 @@ const ARTICLES = [
   },
   {
     id: 3,
-    title: 'Nelayan Banda Aceh Raih Pendapatan 3x Lipat dari Program RE-OCEAN',
+    title: 'Nelayan Banda Aceh Raih Pendapatan 3x Lipat dari Program LAMURI',
     excerpt: 'Pak Syahril, nelayan 20 tahun asal Ulee Lheue kini mendapat tambahan Rp 2-3 juta per bulan hanya dari menjual limbah ikan yang dulu dibuang begitu saja.',
     tag: 'Kisah Sukses',
     emoji: '🎣',
-    author: 'Tim RE-OCEAN',
+    author: 'Tim LAMURI',
     date: '18 Jun 2026',
     readTime: '5 min',
     views: 6140
@@ -51,8 +51,8 @@ const ARTICLES = [
   },
   {
     id: 5,
-    title: 'RE-OCEAN dan SDGs: Bagaimana Bisnis Limbah Ikan Memenuhi 5 Target PBB',
-    excerpt: 'Analisis mendalam bagaimana model bisnis RE-OCEAN secara sistemik berkontribusi pada Sustainable Development Goals, khususnya SDG 14 tentang ekosistem laut.',
+    title: 'LAMURI dan SDGs: Bagaimana Bisnis Limbah Ikan Memenuhi 5 Target PBB',
+    excerpt: 'Analisis mendalam bagaimana model bisnis LAMURI secara sistemik berkontribusi pada Sustainable Development Goals, khususnya SDG 14 tentang ekosistem laut.',
     tag: 'SDGs',
     emoji: '🌍',
     author: 'Prof. Mahfudz Al-Amir',
@@ -74,7 +74,7 @@ const ARTICLES = [
   {
     id: 7,
     title: 'Ekonomi Sirkular Perikanan: Indonesia Bisa Hemat Rp 4,2 Triliun per Tahun',
-    excerpt: 'Laporan LIPI 2025 mengungkap potensi ekonomi limbah ikan Indonesia yang belum termanfaatkan. RE-OCEAN hadir sebagai platform untuk mewujudkannya.',
+    excerpt: 'Laporan LIPI 2025 mengungkap potensi ekonomi limbah ikan Indonesia yang belum termanfaatkan. LAMURI hadir sebagai platform untuk mewujudkannya.',
     tag: 'Ekonomi',
     emoji: '📊',
     author: 'Dr. Ahmad Fauzi',
@@ -88,7 +88,7 @@ const ARTICLES = [
     excerpt: 'Kesalahan pengeringan dan penyimpanan bisa membuat sisik ikan berjamur dan tidak laku. Pelajari SOP yang benar dalam artikel komprehensif ini.',
     tag: 'Tutorial',
     emoji: '📋',
-    author: 'Tim Riset RE-OCEAN',
+    author: 'Tim Riset LAMURI',
     date: '3 Jun 2026',
     readTime: '6 min',
     views: 7250
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.newsletter-btn')?.addEventListener('click', () => {
     const input = document.querySelector('.newsletter-input');
     if (input?.value) {
-      showToast('🎉 Berhasil subscribe newsletter RE-OCEAN!', 'success');
+      showToast('🎉 Berhasil subscribe newsletter LAMURI!', 'success');
       input.value = '';
     } else {
       showToast('Masukkan email Anda terlebih dahulu', 'error');

@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — Beranda CSS v3 (Deep Ocean + Wave Animations)
+   LAMURI — Beranda CSS v3 (Deep Ocean + Wave Animations)
    ============================================================= */
 
 /* ── HERO ───────────────────────────────────────────────────── */
@@ -199,8 +199,9 @@
 .hero-slider-controls { pointer-events: auto; z-index: 100; 
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
   margin-top: 60px;
+  margin-bottom: 48px;
 }
 
 .hero-slider-btn {
@@ -224,7 +225,7 @@
 }
 
 .hero-slider-dots {
-  display: flex; gap: 8px;
+  display: flex; gap: 16px;
 }
 
 .hero-slider-dots .dot {
@@ -1125,3 +1126,178 @@
 /* -- SDG responsive extra -- */
 @media (max-width: 500px) { .sdgs-grid { grid-template-columns: 1fr !important; } }
 
+
+
+/* Interactive Diagram Enhancements */
+.circ-link-line {
+  stroke: rgba(43,184,220,0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  animation: dataFlow 3s linear infinite;
+}
+
+@keyframes dataFlow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -24; }
+}
+
+.circ-node-group {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.circ-node-group .node-glow-ring {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: 0 0;
+  transform: scale(0.8);
+}
+
+.circ-node-group:hover .node-glow-ring {
+  opacity: 1;
+  transform: scale(1.1);
+  stroke: #fff;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+
+.circ-node-group:hover .circ-node-bg {
+  fill: url(#activeNodeGrad) !important;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.circ-node-group:hover .circ-node-icon {
+  stroke: #fff !important;
+  transform: scale(1.15);
+  transform-origin: 0 -2px;
+}
+
+.circ-node-group:hover .circ-node-label {
+  fill: #fff !important;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.circ-center-circle {
+  animation: centerPulse 4s infinite alternate;
+}
+
+@keyframes centerPulse {
+  0% { filter: drop-shadow(0 0 15px rgba(43,184,220,0.4)); transform: scale(0.98); transform-origin: 240px 240px; }
+  100% { filter: drop-shadow(0 0 30px rgba(43,184,220,0.8)); transform: scale(1.02); transform-origin: 240px 240px; }
+}
+
+
+/* Glowing Track Line Animation */
+
+
+.circ-node-group.active .node-glow-ring {
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  stroke: #fff !important;
+  filter: drop-shadow(0 0 12px rgba(43,184,220,0.9));
+}
+
+.circ-node-group.active .circ-node-bg {
+  fill: url(#activeNodeGrad) !important;
+  stroke: #fff !important;
+  stroke-width: 2 !important;
+}
+
+.circ-node-group.active .circ-node-icon {
+  stroke: #fff !important;
+  transform: scale(1.15);
+  transform-origin: 0 -2px;
+}
+
+.circ-node-group.active .circ-node-label {
+  fill: #fff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+
+
+
+/* Pure CSS Circular Flow Animation */
+.flow-light {
+  fill: none;
+  stroke: #2BB8DC;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 12px rgba(43,184,220,0.9));
+  stroke-linecap: round;
+  stroke-dasharray: 10 100;
+  animation: svgFlow 10s linear infinite;
+}
+
+@keyframes svgFlow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -100; }
+}
+
+/* Premium Radar Sweep */
+.radar-scanner {
+  transform-origin: 240px 240px;
+  animation: radarSpin 4s linear infinite;
+}
+
+@keyframes radarSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Orbital Particles */
+.orbit-particles {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px #2BB8DC);
+}
+
+.orbit-particles.inner {
+  stroke-width: 2;
+  stroke-dasharray: 0 40;
+  opacity: 0.6;
+  animation: particleFlow 12s linear infinite reverse;
+}
+
+.orbit-particles.outer {
+  stroke-width: 3;
+  stroke-dasharray: 0 60;
+  opacity: 0.4;
+  animation: particleFlow 24s linear infinite;
+}
+
+@keyframes particleFlow {
+  0% { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Node Radar Synchronization */
+.node-0 .circ-node-bg { animation: nodeRadarHit 4s linear infinite; }
+.node-1 .circ-node-bg { animation: nodeRadarHit 4s linear infinite; animation-delay: -3.2s; }
+.node-2 .circ-node-bg { animation: nodeRadarHit 4s linear infinite; animation-delay: -2.4s; }
+.node-3 .circ-node-bg { animation: nodeRadarHit 4s linear infinite; animation-delay: -1.6s; }
+.node-4 .circ-node-bg { animation: nodeRadarHit 4s linear infinite; animation-delay: -0.8s; }
+
+@keyframes nodeRadarHit {
+  0%, 100% { 
+    fill: rgba(43,184,220,0.6);
+    stroke: #fff;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 15px rgba(43,184,220,0.9));
+    transform: scale(1.1);
+  }
+  15%, 85% { 
+    fill: rgba(11,28,48,0.7);
+    stroke: rgba(255,255,255,0.35);
+    stroke-width: 1.5;
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+.circ-node-bg { transform-origin: center; transition: all 0.3s; }

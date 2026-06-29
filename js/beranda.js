@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — Beranda JS v6
+   LAMURI — Beranda JS v6
    Fish path animation, side waves, bubbles, hero slider
    ============================================================= */
 
@@ -147,58 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', handleWaveScroll, { passive: true });
 
-  // ── Fish Path Animation ────────────────────────────────────────
-  const circSvg  = document.getElementById('circ-svg');
-  const fishGroup = document.getElementById('fish-group');
-  const fishPath = document.getElementById('fish-path');
-  const nodeGroups = document.querySelectorAll('.circ-node-group');
-
-  if (circSvg && fishGroup && fishPath) {
-    const pathLen  = fishPath.getTotalLength();
-    let pathOffset = 0;
-    const speed    = 0.5;
-
-    const nodePositions = [0, 0.20, 0.40, 0.60, 0.80];
-    const glowRadius = pathLen * 0.07;
-
-    function animateFish() {
-      pathOffset = (pathOffset + speed) % pathLen;
-      const pt  = fishPath.getPointAtLength(pathOffset);
-      const pt2 = fishPath.getPointAtLength((pathOffset + 5) % pathLen);
-
-      const dx = pt2.x - pt.x;
-      const dy = pt2.y - pt.y;
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-
-      fishGroup.setAttribute('transform', `translate(${pt.x},${pt.y}) rotate(${angle})`);
-
-      nodeGroups.forEach((nodeEl, i) => {
-        const nodeOffset = nodePositions[i] * pathLen;
-        let dist = Math.abs(pathOffset - nodeOffset);
-        if (dist > pathLen / 2) dist = pathLen - dist;
-
-        if (dist < glowRadius) {
-          nodeEl.classList.add('active');
-        } else {
-          nodeEl.classList.remove('active');
-        }
-      });
-
-      requestAnimationFrame(animateFish);
-    }
-
-    const circObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateFish();
-          circObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
-
-    const circSection = document.querySelector('.circ-section');
-    if (circSection) circObserver.observe(circSection);
-  }
+  // ── Fish Path Animation Removed (Replaced by pure CSS) ──
 
   // ── SDG Progress Bars ─────────────────────────────────────────
   const sdgObserver = new IntersectionObserver((entries) => {

@@ -1,5 +1,5 @@
 /* =============================================================
-   RE-OCEAN — Lokasi JS (Leaflet Map + Geolocation)
+   LAMURI — Lokasi JS (Leaflet Map + Geolocation)
    ============================================================= */
 
 // ── Mock seller data ──────────────────────────────────────────
@@ -36,7 +36,7 @@ const SELLERS = [
   },
   {
     id: 3,
-    name: 'Hub RE-OCEAN Ulee Lheue',
+    name: 'Toko Penjual Ulee Lheue',
     type: 'Pusat Pengolahan Limbah',
     icon: '🌊',
     lat: 5.5580,
