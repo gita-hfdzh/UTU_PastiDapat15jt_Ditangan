@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=13">
+  <link rel="stylesheet" href="css/marketplace.css?v=13">
+</head>
+<body class="marketplace-page">
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link active">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link">SEA</a></li>
+        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="keranjang.html" class="btn-nav-cart" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></a>
+        <a href="login.html" class="btn-nav-login">Masuk</a>
+        <a href="daftar.html" class="btn-nav-register">Daftar</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div class="mp-banner">
+    <div class="container">
+      <span class="section-label section-label-light">Marketplace Premium</span>
+      <h1>Bahan Baku & Olahan <em>Sirkular</em></h1>
+      <p>Pusat jual beli limbah ikan berkualitas (bahan baku) dan produk hasil olahannya. Tingkatkan sirkularitas ekonomi dengan memanfaatkan setiap bagian secara optimal.</p>
+      <div class="mp-search-wrap">
+        <input type="text" class="mp-search-input" id="mp-search" placeholder="Cari produk, kategori, atau nama pengrajin...">
+        <button class="mp-search-btn">Cari Produk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Bar -->
+  <div class="mp-cat-bar">
+    <div class="mp-main-tabs" style="display:flex; justify-content:center; gap:12px; margin-bottom:16px;">
+      <button class="btn btn-navy active main-tab-btn" data-main="limbah" style="padding: 10px 24px; border-radius: var(--radius-full);">Limbah (Bahan Baku)</button>
+      <button class="btn btn-outline-dark main-tab-btn" data-main="olahan" style="padding: 10px 24px; border-radius: var(--radius-full);">Produk Olahan</button>
+    </div>
+    <div class="mp-cat-tabs" id="mp-sub-tabs">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="mp-body">
+    <!-- Sidebar -->
+    <aside class="mp-sidebar card-white">
+      <div style="padding: 24px;">
+        <div class="sidebar-title">
+          Filter Pencarian
+          <button class="sidebar-reset" id="sidebar-reset">Reset</button>
+        </div>
+
+        <div class="filter-group reveal">
+          <span class="filter-label">Tipe Produk</span>
+          <div class="cat-list" style="margin-bottom:16px;">
+            <button class="main-side-btn active" data-main="limbah" style="font-weight:600;">Limbah (Bahan Baku)</button>
+            <button class="main-side-btn" data-main="olahan" style="font-weight:600;">Produk Olahan</button>
+          </div>
+          
+          <span class="filter-label">Sub-Kategori</span>
+          <div class="cat-list" id="sidebar-sub-cats">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <hr class="thin-line-warm" style="margin:24px 0;">
+
+        <div class="filter-group reveal">
+          <span class="filter-label">Rentang Harga (Rp)</span>
+          <div class="price-grid">
+            <input type="number" class="form-input" placeholder="Min" id="price-min" style="padding:10px;">
+            <input type="number" class="form-input" placeholder="Maks" id="price-max" style="padding:10px;">
+          </div>
+        </div>
+
+        <hr class="thin-line-warm" style="margin:24px 0;">
+
+        <div class="filter-group reveal" style="margin-bottom:0;">
+          <span class="filter-label">Rating Minimum</span>
+          <div class="rating-list">
+            <label class="rating-item">
+              <input type="radio" name="rating" value="all" checked>
+              <span>Semua Rating</span>
+            </label>
+            <label class="rating-item">
+              <input type="radio" name="rating" value="4.5">
+              <span class="rating-stars">★★★★</span>
+              <span class="rating-label">4.5 ke atas</span>
+            </label>
+            <label class="rating-item">
+              <input type="radio" name="rating" value="4.0">
+              <span class="rating-stars">★★★★</span>
+              <span class="rating-label">4.0 ke atas</span>
+            </label>
+          </div>
+        </div>
+
+        <hr class="thin-line-warm" style="margin:24px 0;">
+
+        <div class="filter-group reveal" style="margin-bottom:0;">
+          <span class="filter-label">Ketersediaan Stok</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="stock-available" value="true">
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Tampilkan yang tersedia</span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="mp-main">
+      <div class="mp-toolbar">
+        <div class="mp-count" id="mp-count">Menampilkan <strong>9</strong> produk</div>
+        <div class="mp-right-bar">
+          <select class="sort-select" id="mp-sort">
+            <option value="best-seller">Koleksi Terlaris</option>
+            <option value="rating">Rating Tertinggi</option>
+            <option value="price-asc">Harga Terendah</option>
+            <option value="price-desc">Harga Tertinggi</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Journey Modal -->
+  <div class="modal-overlay" id="journey-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-product-info">
+          <img id="modal-img" src="" alt="Produk" class="modal-product-img">
+          <div>
+            <div class="modal-product-name" id="modal-name">Nama Produk</div>
+            <div class="modal-product-price" id="modal-price">Rp 0</div>
+          </div>
+        </div>
+        <button class="modal-close" id="modal-close">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="journey-label">Jejak Transformasi — Dari Laut Menjadi Bernilai</div>
+        <div class="journey-timeline" id="journey-timeline"></div>
+        <div class="modal-actions" style="flex-direction: column; gap: 12px;">
+          <div style="display:flex; gap:16px;">
+            <button class="btn btn-navy" style="flex:1;" id="modal-btn-detail">
+              Lihat Detail Produk
+            </button>
+            <button class="btn btn-outline-dark" id="modal-btn-cart">
+              + Keranjang
+            </button>
+          </div>
+          <button class="btn btn-outline-dark" style="width:100%; border-color:#25D366; color:#25D366;" onclick="window.open('https://wa.me/6281234567890', '_blank')">💬 Hubungi Penjual</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 RE-OCEAN — Marketplace Produk Limbah Ikan Premium</p>
+        <div style="display:flex;gap:24px;">
+          <a href="index.html">Beranda</a>
+          <a href="lokasi.html">Lokasi</a>
+          <a href="ai-assistant.html">SEA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/marketplace.js"></script>
+</body>
+</html>
+

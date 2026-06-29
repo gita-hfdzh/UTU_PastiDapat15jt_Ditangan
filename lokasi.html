@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lokasi | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=10">
+  <link rel="stylesheet" href="css/lokasi.css?v=10">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body class="lokasi-page">
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link active">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link">SEA</a></li>
+        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="keranjang.html" class="btn-nav-cart" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></a>
+        <a href="login.html" class="btn-nav-login">Masuk</a>
+        <a href="daftar.html" class="btn-nav-register">Daftar</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="lokasi-banner">
+    <div class="container">
+      <span class="section-label section-label-light">Pemetaan Geospasial</span>
+      <h1>Jaringan Penjual & Hub</h1>
+      <p>Temukan pusat pengolahan dan toko mitra RE-OCEAN terdekat dari posisi Anda saat ini.</p>
+    </div>
+  </div>
+
+  <div class="lokasi-stats">
+    <div class="stat-card card-white">
+      <div class="stat-val" id="total-sellers">5</div>
+      <div class="stat-lbl">Hub Tersedia</div>
+    </div>
+    <div class="stat-card card-white">
+      <div class="stat-val">132</div>
+      <div class="stat-lbl">Total Produk</div>
+    </div>
+    <div class="stat-card card-white">
+      <div class="stat-val">4.7</div>
+      <div class="stat-lbl">Rating Kepuasan</div>
+    </div>
+  </div>
+
+  <div class="lokasi-body">
+    <!-- Main Column (Left) -->
+    <div class="lokasi-main-col" style="display:flex; flex-direction:column; gap:24px;">
+      
+      <!-- Info Card Above Map -->
+      <div class="info-card card-white" style="padding:24px;">
+        <h3 style="font-family:var(--font-serif);color:var(--navy-900);font-size:1.15rem;margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+          <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:var(--teal-400);fill:none;stroke-width:2;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Belanja & Ambil di Toko
+        </h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px;">
+          Gunakan peta untuk <strong>Mencari Toko Terdekat</strong> secara otomatis dari lokasi Anda.
+        </p>
+        <div style="font-size:0.82rem;background:var(--warm-100);padding:12px;border-radius:var(--radius-sm);color:var(--text-body);border:1px solid var(--warm-200);">
+          <strong>BOPIS (Buy Online Pick Up In Store):</strong><br>
+          Pesan di Marketplace kami secara online, dan ambil langsung ke toko yang tertera di peta untuk menghemat ongkir.
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-card card-white">
+      <div class="map-bar">
+        <div class="map-bar-title">Peta Interaktif Pesisir</div>
+        <button class="map-locate-btn" id="locate-btn">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+          Gunakan Lokasi Saya
+        </button>
+      </div>
+      <div id="lokasi-map"></div>
+      <div class="map-loading" id="map-loading">
+        <div class="map-spinner"></div>
+        <p>Menyiapkan Peta...</p>
+      </div>
+    </div> <!-- End map-card -->
+    </div> <!-- End lokasi-main-col -->
+
+    <!-- Panel -->
+    <div class="lokasi-panel">
+      <div class="user-card card-white">
+        <div class="user-card-head">
+          <div class="user-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+          </div>
+          <div>
+            <h3>Lokasi Saat Ini</h3>
+            <span>Sinkronisasi otomatis</span>
+          </div>
+        </div>
+        <div class="user-detail-row">
+          <div class="user-detail-lbl">Area Terdeteksi</div>
+          <div class="user-detail-val" id="user-address">Menunggu izin akses lokasi Anda.</div>
+        </div>
+        <div class="user-detail-row" style="margin-top:12px;">
+          <div class="user-detail-lbl">Titik Koordinat</div>
+          <div class="user-coords" id="user-coords">--.---- LU, --.---- BT</div>
+        </div>
+      </div>
+
+      <div class="nearby-card card-white">
+        <div class="nearby-head">
+          <h3>Mitra Terdekat</h3>
+          <p>Ketuk kartu untuk melihat di peta</p>
+        </div>
+        <div class="nearby-list" id="nearby-list">
+          <div style="text-align:center;padding:40px 20px;color:var(--text-muted);">
+            <div style="margin-bottom:16px;opacity:0.3;">
+              <svg style="width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.5;" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <p style="font-size:0.85rem;font-weight:300;">Izinkan akses lokasi pada browser Anda untuk menampilkan mitra terdekat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Modal -->
+  <div class="modal-overlay" id="store-modal">
+    <div class="modal-box" style="max-width: 500px;">
+      <div class="modal-header">
+        <div class="modal-product-info">
+          <div class="user-icon" id="store-modal-icon" style="width:48px;height:48px;font-size:1.5rem;display:flex;align-items:center;justify-content:center;background:var(--primary);border-radius:12px;color:#fff;">🏪</div>
+          <div>
+            <div class="modal-product-name" id="store-modal-name">Nama Toko</div>
+            <div class="modal-product-price" id="store-modal-type" style="color:var(--teal-400);font-size:0.85rem;margin-top:2px;">Tipe Toko</div>
+          </div>
+        </div>
+        <button class="modal-close" id="store-modal-close">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="font-size:0.85rem;color:var(--text-body);line-height:1.6;margin-bottom:16px;">
+          <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="opacity:0.6;">📍</span> <span id="store-modal-address">Alamat</span></div>
+          <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="opacity:0.6;">⏰</span> <span id="store-modal-hours">Jam Operasional</span></div>
+          <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="opacity:0.6;">⭐</span> <span id="store-modal-rating">Rating</span></div>
+          <div style="display:flex;gap:8px;"><span style="opacity:0.6;">📞</span> <span id="store-modal-phone">Telepon</span></div>
+        </div>
+
+        <div class="journey-label" style="border-top:1px solid var(--warm-200);padding-top:16px;">Contoh Produk Dijual</div>
+        <div class="nearby-list" id="store-modal-products" style="margin-top:12px;">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="modal-actions" style="margin-top:24px;">
+          <button class="btn btn-navy" id="store-modal-visit-btn" style="flex:1;" onclick="window.location.href='toko.html'">Kunjungi Profil Toko</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 RE-OCEAN — Ekosistem Sirkular Limbah Ikan Premium</p>
+        <div style="display:flex;gap:24px;">
+          <a href="index.html">Beranda</a>
+          <a href="marketplace.html">Marketplace</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/lokasi.js"></script>
+</body>
+</html>
+

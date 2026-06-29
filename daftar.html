@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    body { background: var(--bg-main); }
+    .auth-page { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+    
+    /* Left Visual */
+    .auth-visual { position: relative; background: var(--navy-950); overflow: hidden; }
+    .auth-visual-img { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; opacity: 0.45; }
+    .auth-visual-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(4,9,15,0.7) 0%, rgba(22,43,82,0.4) 100%); }
+    .auth-visual-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 56px; z-index: 2; }
+    
+    .auth-logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-serif); font-size: 1.6rem; font-weight: 500; color: #fff; letter-spacing: 0.12em; }
+    .auth-logo-mark { width: 44px; height: 44px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+    .auth-logo-mark svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 1.5; }
+    
+    .auth-visual-bottom h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 300; color: #fff; margin-bottom: 16px; line-height: 1.15; letter-spacing: -0.01em; }
+    .auth-visual-bottom h2 em { font-style: italic; color: var(--warm-300); }
+    .auth-visual-bottom p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.8; max-width: 480px; font-weight: 300; }
+    
+    .auth-steps { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .auth-step { display: flex; align-items: center; gap: 14px; }
+    .auth-step-num { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 0.9rem; color: #fff; flex-shrink: 0; }
+    .auth-step p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; font-weight: 300; }
+
+    /* Right Form */
+    .auth-form-panel { display: flex; align-items: center; justify-content: center; padding: 40px; background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); position: relative; overflow-y: auto; }
+    .auth-form-wrap { width: 100%; max-width: 440px; padding: 24px 0; }
+    
+    .auth-form-header { margin-bottom: 32px; text-align: center; }
+    .auth-form-header h1 { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; color: var(--navy-900); margin-bottom: 8px; }
+    .auth-form-header p { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+    
+    .form-input-wrap { position: relative; }
+    .form-input-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--text-muted); fill: none; stroke-width: 1.5; pointer-events: none; }
+    .form-input-wrap .form-input { padding: 14px 16px 14px 46px; border-radius: var(--radius-md); background: rgba(255,255,255,0.85); border: 1px solid rgba(0,0,0,0.1); }
+    .form-input-wrap .form-input:focus { background: #fff; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(42,77,136,0.1); }
+    
+    .form-input-wrap .pwd-toggle { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); transition: var(--transition); display: flex; align-items: center; }
+    .form-input-wrap .pwd-toggle:hover { color: var(--navy-900); }
+    .form-input-wrap .pwd-toggle svg { position: static; transform: none; stroke: currentColor; }
+    
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    
+    .terms-wrap { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 28px; font-size: 0.8rem; color: var(--text-body); line-height: 1.6; font-weight: 300; }
+    .terms-wrap input { accent-color: var(--navy-900); margin-top: 3px; flex-shrink: 0; width: 16px; height: 16px; }
+    .terms-wrap a { color: var(--primary); font-weight: 500; transition: var(--transition); }
+    .terms-wrap a:hover { color: var(--primary-light); }
+    
+    .btn-auth { width: 100%; padding: 16px; background: var(--primary); color: #fff; border-radius: var(--radius-full); font-family: var(--font-sans); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.05em; transition: var(--transition); margin-bottom: 24px; box-shadow: var(--shadow-primary); border: none; }
+    .btn-auth:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,77,136,0.3); }
+    
+    .auth-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--warm-200); }
+    .auth-divider span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; }
+    
+    .btn-oauth { width: 100%; padding: 14px; border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-full); background: rgba(255,255,255,0.7); color: var(--navy-900); font-family: var(--font-sans); font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 12px; transition: var(--transition); backdrop-filter: blur(8px); }
+    .btn-oauth:hover { border-color: var(--primary); background: #fff; }
+    
+    .auth-footer { text-align: center; margin-top: 32px; font-size: 0.9rem; color: var(--text-muted); }
+    .auth-footer a { color: var(--navy-900); font-weight: 600; margin-left: 6px; }
+    
+    .back-home { position: absolute; top: 32px; right: 40px; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.1em; transition: var(--transition); z-index: 10; }
+    .back-home:hover { color: var(--navy-900); }
+
+    .pass-strength { height: 4px; border-radius: 2px; background: var(--warm-200); margin-top: 8px; overflow: hidden; }
+    .pass-bar { height: 100%; border-radius: 2px; transition: all 0.4s; }
+
+    @media(max-width: 900px) {
+      .auth-page { grid-template-columns: 1fr; }
+      .auth-visual { display: none; }
+      .auth-form-panel { padding: 40px 24px; }
+      .back-home { top: 20px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-visual">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Fisherman" class="auth-visual-img">
+      <div class="auth-visual-overlay"></div>
+      <div class="auth-visual-content">
+        <a href="index.html" class="auth-logo">
+          <div class="auth-logo-mark"><svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg></div>
+          RE<span style="color:var(--primary);">·</span>OCEAN
+        </a>
+        <div class="auth-visual-bottom">
+          <h2>Bergabung dengan <br>Ekosistem <em>Sirkular</em></h2>
+          <p>Daftar gratis untuk mengakses produk olahan premium dan berkontribusi langsung pada ekonomi pesisir.</p>
+          <div class="auth-steps">
+            <div class="auth-step">
+              <div class="auth-step-num">1</div>
+              <p>Buat akun personal Anda</p>
+            </div>
+            <div class="auth-step">
+              <div class="auth-step-num">2</div>
+              <p>Jelajahi koleksi produk premium</p>
+            </div>
+            <div class="auth-step">
+              <div class="auth-step-num">3</div>
+              <p>Transaksi aman dengan para pengrajin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-form-panel">
+      <a href="index.html" class="back-home">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Beranda
+      </a>
+      
+      <div class="auth-form-wrap">
+        <div class="auth-form-header">
+          <h1>Buat Akun Baru</h1>
+          <p>Bergabung dengan RE-OCEAN, gratis selamanya.</p>
+        </div>
+
+        <form id="register-form" novalidate>
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Nama Depan</label>
+              <div class="form-input-wrap">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" class="form-input" placeholder="Ahmad">
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Nama Belakang</label>
+              <div class="form-input-wrap">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" class="form-input" placeholder="Fauzi">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Alamat Email</label>
+            <div class="form-input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" class="form-input" placeholder="contoh@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Nomor Ponsel (Opsional)</label>
+            <div class="form-input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="tel" class="form-input" placeholder="08xx-xxxx-xxxx">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Kata Sandi</label>
+            <div class="form-input-wrap">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="reg-password" class="form-input" placeholder="Minimal 8 karakter" required>
+              <button type="button" class="pwd-toggle" id="pwd-toggle-reg">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="pass-strength" id="strength-bar">
+              <div class="pass-bar" id="strength-fill" style="width:0;background:#ef4444;"></div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px;font-weight:500;" id="strength-text"></div>
+          </div>
+
+          <div class="terms-wrap">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">Saya menyetujui <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> RE-OCEAN untuk proses data saya.</label>
+          </div>
+
+          <button type="submit" class="btn-auth">Buat Akun Sekarang</button>
+        </form>
+
+        <div class="auth-divider"><span>Atau daftar dengan</span></div>
+
+        <button class="btn-oauth">
+          <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Daftar dengan Google
+        </button>
+
+        <div class="auth-footer">
+          Sudah punya akun? <a href="login.html">Masuk di sini</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password toggle
+    const toggleReg = document.getElementById('pwd-toggle-reg');
+    const pwdReg = document.getElementById('reg-password');
+    toggleReg.addEventListener('click', () => {
+      pwdReg.type = pwdReg.type === 'text' ? 'password' : 'text';
+    });
+
+    // Password strength
+    pwdReg.addEventListener('input', () => {
+      const v = pwdReg.value;
+      const fill = document.getElementById('strength-fill');
+      const text = document.getElementById('strength-text');
+      let score = 0;
+      if (v.length >= 8) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      
+      const map = [
+        { w: '25%', c: '#ef4444', t: 'Sangat Lemah' },
+        { w: '50%', c: '#f97316', t: 'Lemah' },
+        { w: '75%', c: '#eab308', t: 'Cukup Kuat' },
+        { w: '100%', c: '#22c55e', t: 'Sangat Kuat' },
+      ];
+      
+      if (v.length > 0) {
+        const level = map[Math.min(score - 1, 3)];
+        fill.style.width = level.w;
+        fill.style.background = level.c;
+        text.textContent = level.t;
+        text.style.color = level.c;
+      } else {
+        fill.style.width = '0';
+        text.textContent = '';
+      }
+    });
+
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const terms = document.getElementById('terms').checked;
+      if (!terms) { alert('Harap centel persetujuan Syarat & Ketentuan.'); return; }
+      window.location.href = 'marketplace.html';
+    });
+  </script>
+</body>
+</html>

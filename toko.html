@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Toko | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=9">
+  <link rel="stylesheet" href="css/marketplace.css?v=9">
+  <style>
+    .store-banner {
+      background: var(--navy-950);
+      padding: 120px 0 60px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .store-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse at 90% 0%, rgba(42,77,136,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 100%, rgba(24,150,184,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .store-header {
+      display: flex; gap: 32px; align-items: flex-end;
+      position: relative; z-index: 2;
+    }
+    .store-logo {
+      width: 120px; height: 120px;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      border: 4px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; box-shadow: var(--shadow-lg);
+    }
+    .store-info h1 { font-family: var(--font-serif); font-size: 2.8rem; margin-bottom: 8px; }
+    .store-meta { display: flex; gap: 24px; font-size: 0.95rem; opacity: 0.9; }
+    .store-meta span { display: flex; align-items: center; gap: 8px; }
+  </style>
+</head>
+<body style="background: var(--bg-main);">
+  <nav class="navbar transparent" id="navbar" data-transparent="true">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link">SEA</a></li>
+        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="keranjang.html" class="btn-nav-cart" aria-label="Keranjang">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </a>
+        <a href="login.html" class="btn-nav-login">Masuk</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="store-banner">
+    <div class="container store-header">
+      <div class="store-logo">🏪</div>
+      <div class="store-info">
+        <div class="section-label section-label-light">Mitra RE-OCEAN</div>
+        <h1 id="toko-name">Koperasi Nelayan Mulia</h1>
+        <div class="store-meta">
+          <span>📍 <span id="toko-address">Banda Aceh</span></span>
+          <span>⭐ <span id="toko-rating">4.8</span>/5.0</span>
+          <span>📦 <span id="toko-products">12</span> Produk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px;">
+      <div>
+        <h2 style="color:var(--navy-900); font-size:1.8rem;">Produk Etalase</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem; margin-top:8px;">Katalog produk sirkular dari mitra ini.</p>
+      </div>
+      <div class="mp-right-bar">
+        <select class="sort-select">
+          <option>Terbaru</option>
+          <option>Harga Terendah</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" id="toko-products-grid">
+      <!-- Will be rendered by JS below -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 RE-OCEAN — Ekosistem Sirkular Limbah Ikan Premium</p>
+        <div style="display:flex;gap:24px;">
+          <a href="index.html">Beranda</a>
+          <a href="marketplace.html">Marketplace</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/marketplace.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const storeName = urlParams.get('id') ? decodeURIComponent(urlParams.get('id')) : 'Koperasi Nelayan Mulia';
+      
+      document.getElementById('toko-name').textContent = storeName;
+      
+      // Map name to location
+      const locMap = {
+        'Dapur Pesisir Aceh': 'Banda Aceh',
+        'GreenAceh Fertilizer': 'Aceh Besar',
+        'Karya Pesisir Artisan': 'Sabang',
+        'Biohealth Aceh': 'Lhokseumawe',
+        'AquaFeed Aceh': 'Bireuen',
+        'Pure Aceh Skincare': 'Pidie',
+        'Hub Ulee Lheue': 'Banda Aceh',
+        'Koperasi Nelayan Mulia': 'Banda Aceh'
+      };
+      document.getElementById('toko-address').textContent = locMap[storeName] || 'Aceh, Indonesia';
+
+      // Find products for this store
+      let storeProducts = typeof PRODUCTS !== 'undefined' ? PRODUCTS.filter(p => p.seller === storeName) : [];
+      if (storeProducts.length === 0 && typeof PRODUCTS !== 'undefined') {
+        // Fallback to random products if store name not found in data
+        storeProducts = PRODUCTS.slice(0, 4);
+      }
+      
+      document.getElementById('toko-products').textContent = storeProducts.length;
+      
+      const grid = document.getElementById('toko-products-grid');
+      if (grid) {
+        const catMap = {
+          'tulang': 'Tulang & Kepala',
+          'sisik': 'Sisik Ikan',
+          'kulit': 'Kulit Ikan',
+          'makanan': 'Gastronomi',
+          'pakan': 'Pakan & Pertanian',
+          'kerajinan': 'Kerajinan',
+          'kesehatan': 'Kesehatan'
+        };
+
+        grid.innerHTML = storeProducts.map(p => `
+          <div class="product-card" data-id="${p.id}" onclick="window.location.href='produk.html?id=${p.id}'" style="cursor:pointer">
+            <div class="product-image">
+              <img src="${p.image}" alt="${p.name}" loading="lazy">
+              <div class="product-badges">
+                ${p.badge ? `<span class="badge ${p.badgeType || 'badge-light'}">${p.badge}</span>` : ''}
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-cat">${catMap[p.category] || p.category}</div>
+              <div class="product-name">${p.name}</div>
+              <div class="product-meta">
+                <span class="product-stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
+                <span class="product-rating">${p.rating}</span>
+                <span class="product-sold">${p.sold.toLocaleString('id-ID')} terjual</span>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+                  ${p.oldPrice ? `<div class="product-price-old">Rp ${p.oldPrice.toLocaleString('id-ID')}</div>` : ''}
+                </div>
+                <button class="add-btn" onclick="event.stopPropagation(); window.location.href='keranjang.html'">+</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

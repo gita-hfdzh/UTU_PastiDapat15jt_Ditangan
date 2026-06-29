@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keranjang Belanja | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=10">
+  <style>
+    .cart-page { padding: calc(var(--nav-height) + 40px) 0 80px; background: var(--bg-main); min-height: 100vh; }
+    .cart-title { font-family: var(--font-serif); font-size: 2.2rem; color: var(--navy-900); margin-bottom: 32px; }
+    
+    .cart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: start; }
+    @media (max-width: 768px) { .cart-grid { grid-template-columns: 1fr; } }
+    
+    .cart-items { display: flex; flex-direction: column; gap: 24px; }
+    .cart-item { display: flex; gap: 24px; padding: 24px; background: #fff; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); }
+    .cart-item-img { width: 120px; height: 120px; border-radius: var(--radius-lg); object-fit: cover; }
+    .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .cart-item-title { font-size: 1.1rem; font-weight: 600; color: var(--navy-900); }
+    .cart-item-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-top: 8px; }
+    
+    .qty-control { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .qty-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    .qty-btn:hover { background: #f5f5f5; }
+    
+    .cart-summary { padding: 24px; background: #fff; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); position: sticky; top: calc(var(--nav-height) + 24px); }
+    .summary-title { font-size: 1.2rem; font-weight: 700; color: var(--navy-900); margin-bottom: 24px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 16px; color: var(--text-body); }
+    .summary-total { display: flex; justify-content: space-between; margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee; font-size: 1.2rem; font-weight: 700; color: var(--navy-900); }
+    
+    .btn-checkout { display: block; width: 100%; padding: 16px; margin-top: 24px; text-align: center; border-radius: var(--radius-full); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link">SEA</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="cart-page">
+    <div class="container">
+      <h1 class="cart-title">Keranjang Belanja</h1>
+      
+      <div class="cart-grid">
+        <div class="cart-items">
+          <!-- Dummy Item 1 -->
+          <div class="cart-item">
+            <img src="https://images.unsplash.com/photo-1558231908-1678be8cde47?auto=format&fit=crop&w=400&q=80" alt="Produk" class="cart-item-img">
+            <div class="cart-item-info">
+              <div>
+                <div class="cart-item-title">Sisik Ikan Kerapu Mentah Kering</div>
+                <div class="cart-item-price" data-price="12000">Rp 12.000</div>
+              </div>
+              <div class="qty-control">
+                <button class="qty-btn qty-minus">-</button>
+                <span class="qty-val">2</span>
+                <button class="qty-btn qty-plus">+</button>
+                <button class="qty-delete" style="margin-left:auto; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.9rem;">Hapus</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Dummy Item 2 -->
+          <div class="cart-item">
+            <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=400&q=80" alt="Produk" class="cart-item-img">
+            <div class="cart-item-info">
+              <div>
+                <div class="cart-item-title">Kerupuk Kulit Ikan Premium</div>
+                <div class="cart-item-price" data-price="25000">Rp 25.000</div>
+              </div>
+              <div class="qty-control">
+                <button class="qty-btn qty-minus">-</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn qty-plus">+</button>
+                <button class="qty-delete" style="margin-left:auto; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.9rem;">Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <div class="summary-title">Ringkasan Belanja</div>
+          <div class="summary-row">
+            <span>Total Harga (3 barang)</span>
+            <span>Rp 49.000</span>
+          </div>
+          <div class="summary-row">
+            <span>Diskon Sirkular</span>
+            <span style="color:#10b981;">-Rp 5.000</span>
+          </div>
+          <div class="summary-total">
+            <span>Total Tagihan</span>
+            <span>Rp 44.000</span>
+          </div>
+          <a href="checkout.html" class="btn btn-ocean btn-checkout">Lanjut ke Pembayaran</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartItems = document.querySelectorAll('.cart-item');
+      let totalBarang = 3;
+      let totalHarga = 49000;
+      let diskon = 5000;
+      
+      const updateTotal = () => {
+        let currentBarang = 0;
+        let currentHarga = 0;
+        
+        document.querySelectorAll('.cart-item').forEach(item => {
+          if (item.style.display !== 'none') {
+            const qtyStr = item.querySelector('.qty-val').textContent;
+            const priceStr = item.querySelector('.cart-item-price').dataset.price;
+            
+            const qty = parseInt(qtyStr) || 0;
+            const price = parseInt(priceStr) || 0;
+            
+            currentBarang += qty;
+            currentHarga += (qty * price);
+          }
+        });
+        
+        const summaryRows = document.querySelectorAll('.summary-row span');
+        if (summaryRows.length >= 2) {
+          summaryRows[0].textContent = `Total Harga (${currentBarang} barang)`;
+          summaryRows[1].textContent = `Rp ${currentHarga.toLocaleString('id-ID')}`;
+        }
+        
+        const summaryTotal = document.querySelector('.summary-total span:last-child');
+        if (summaryTotal) {
+          const finalPrice = Math.max(0, currentHarga - diskon);
+          summaryTotal.textContent = `Rp ${finalPrice.toLocaleString('id-ID')}`;
+        }
+      };
+
+      cartItems.forEach(item => {
+        const btnMinus = item.querySelector('.qty-minus');
+        const btnPlus = item.querySelector('.qty-plus');
+        const qtyVal = item.querySelector('.qty-val');
+        const btnDelete = item.querySelector('.qty-delete');
+
+        if (btnMinus && btnPlus && qtyVal) {
+          btnMinus.addEventListener('click', () => {
+            let qty = parseInt(qtyVal.textContent);
+            if (qty > 1) {
+              qty--;
+              qtyVal.textContent = qty;
+              updateTotal();
+            }
+          });
+
+          btnPlus.addEventListener('click', () => {
+            let qty = parseInt(qtyVal.textContent);
+            qty++;
+            qtyVal.textContent = qty;
+            updateTotal();
+          });
+        }
+        
+        if (btnDelete) {
+          btnDelete.addEventListener('click', () => {
+            item.style.display = 'none';
+            updateTotal();
+            if(window.showToast) window.showToast('Barang dihapus dari keranjang');
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

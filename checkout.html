@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=9">
+  <style>
+    .checkout-page { padding: calc(var(--nav-height) + 40px) 0 80px; background: var(--bg-main); min-height: 100vh; }
+    .checkout-title { font-family: var(--font-serif); font-size: 2.2rem; color: var(--navy-900); margin-bottom: 32px; }
+    
+    .checkout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: start; }
+    @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } }
+    
+    .section-card { background: #fff; padding: 24px; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); margin-bottom: 24px; }
+    .section-header { font-size: 1.2rem; font-weight: 700; color: var(--navy-900); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #eee; }
+    
+    .radio-option { display: block; margin-bottom: 12px; padding: 16px; border: 1px solid #ddd; border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; }
+    .radio-option:hover { border-color: var(--primary); background: rgba(42,77,136,0.02); }
+    .radio-option input { margin-right: 12px; }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--navy-900); }
+    .form-input { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: var(--radius-md); font-size: 0.95rem; }
+    
+    .summary-card { background: #fff; padding: 24px; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); position: sticky; top: calc(var(--nav-height) + 24px); }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--text-body); font-size: 0.95rem; }
+    .summary-total { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; font-size: 1.3rem; font-weight: 700; color: var(--navy-900); }
+    
+    .btn-pay { display: block; width: 100%; padding: 16px; margin-top: 24px; text-align: center; border-radius: var(--radius-full); font-weight: 600; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="checkout-page">
+    <div class="container">
+      <h1 class="checkout-title">Checkout</h1>
+      
+      <div class="checkout-grid">
+        <div>
+          <!-- Shipping / Pickup -->
+          <div class="section-card">
+            <div class="section-header">Metode Pengiriman</div>
+            
+            <label class="radio-option">
+              <input type="radio" name="shipping" value="bopis" checked>
+              <strong>BOPIS (Buy Online Pick Up In Store)</strong>
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-left:26px; margin-top:4px;">
+                Ambil langsung di Hub RE-OCEAN terdekat tanpa biaya ongkir.
+              </div>
+            </label>
+            
+            <label class="radio-option">
+              <input type="radio" name="shipping" value="delivery">
+              <strong>Kirim ke Alamat</strong>
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-left:26px; margin-top:4px;">
+                Dikirim menggunakan kurir mitra.
+              </div>
+            </label>
+
+            <div id="address-form" style="display:none; margin-top:20px; padding-top:20px; border-top:1px dashed #ddd;">
+              <div class="form-group">
+                <label class="form-label">Alamat Lengkap</label>
+                <textarea class="form-input" rows="3" placeholder="Masukkan alamat pengiriman..."></textarea>
+              </div>
+            </div>
+            
+            <div id="bopis-form" style="margin-top:20px; padding-top:20px; border-top:1px dashed #ddd;">
+              <div class="form-group">
+                <label class="form-label">Pilih Hub Pengambilan</label>
+                <select class="form-input">
+                  <option>Hub Koperasi Nelayan Mulia (Banda Aceh)</option>
+                  <option>Hub Pesisir Meulaboh</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Payment -->
+          <div class="section-card">
+            <div class="section-header">Metode Pembayaran</div>
+            <label class="radio-option">
+              <input type="radio" name="payment" value="transfer" checked> Transfer Bank
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="payment" value="qris"> QRIS / E-Wallet
+            </label>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-card">
+          <div class="section-header" style="margin-bottom:20px;">Ringkasan Pesanan</div>
+          <div class="summary-row">
+            <span>Total Barang (3)</span>
+            <span>Rp 49.000</span>
+          </div>
+          <div class="summary-row">
+            <span>Diskon Sirkular</span>
+            <span style="color:#10b981;">-Rp 5.000</span>
+          </div>
+          <div class="summary-row" id="shipping-cost">
+            <span>Biaya Layanan (BOPIS)</span>
+            <span>Gratis</span>
+          </div>
+          <div class="summary-total">
+            <span>Total Tagihan</span>
+            <span id="total-price">Rp 44.000</span>
+          </div>
+          <button class="btn btn-ocean btn-pay" id="pay-btn">Bayar Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    const radios = document.querySelectorAll('input[name="shipping"]');
+    const addressForm = document.getElementById('address-form');
+    const bopisForm = document.getElementById('bopis-form');
+    const shippingCost = document.getElementById('shipping-cost');
+    const totalPrice = document.getElementById('total-price');
+
+    radios.forEach(r => {
+      r.addEventListener('change', (e) => {
+        if(e.target.value === 'bopis') {
+          addressForm.style.display = 'none';
+          bopisForm.style.display = 'block';
+          shippingCost.innerHTML = '<span>Biaya Layanan (BOPIS)</span><span>Gratis</span>';
+          totalPrice.textContent = 'Rp 44.000';
+        } else {
+          addressForm.style.display = 'block';
+          bopisForm.style.display = 'none';
+          shippingCost.innerHTML = '<span>Ongkos Kirim</span><span>Rp 15.000</span>';
+          totalPrice.textContent = 'Rp 59.000';
+        }
+      });
+    });
+
+    document.getElementById('pay-btn').addEventListener('click', () => {
+      // Simulate payment processing then redirect to success page
+      window.location.href = 'success.html';
+    });
+  </script>
+</body>
+</html>
+

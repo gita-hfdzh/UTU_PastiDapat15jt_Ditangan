@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEA Assistant | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=10">
+  <link rel="stylesheet" href="css/ai.css?v=10">
+</head>
+<body class="ai-page">
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg></div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link active">SEA</a></li>
+        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="keranjang.html" class="btn-nav-cart" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></a>
+        <a href="login.html" class="btn-nav-login">Masuk</a>
+        <a href="daftar.html" class="btn-nav-register">Daftar</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="ai-layout">
+    <!-- Sidebar -->
+    <aside class="ai-sidebar">
+      <div class="sea-brand">
+        <div class="sea-logo">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="sea-brand-name">SEA</div>
+        <div class="sea-brand-sub">Smart Ecological Assistant</div>
+        <div class="sea-online"><div class="sea-dot"></div>Sistem Aktif</div>
+      </div>
+      <button class="new-chat-btn" id="new-chat-btn" onclick="window.location.href='roomchat.html'">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Mulai Percakapan Baru
+      </button>
+      <div style="margin-top:10px;">
+        <span class="hist-label">Riwayat Hari Ini</span>
+        <div class="hist-list">
+          <div class="hist-item active">
+            <div class="hist-item-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div>
+              <div class="hist-text">Cara mengolah sisik ikan menjadi kolagen murni</div>
+              <div class="hist-time">10:42 AM</div>
+            </div>
+          </div>
+          <div class="hist-item">
+            <div class="hist-item-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div>
+              <div class="hist-text">Estimasi profit bisnis pupuk cair</div>
+              <div class="hist-time">08:15 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <span class="hist-label">7 Hari Terakhir</span>
+        <div class="hist-list">
+          <div class="hist-item">
+            <div class="hist-item-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div>
+              <div class="hist-text">Perbedaan kolagen ikan laut dan air tawar</div>
+              <div class="hist-time">2 Hari yang lalu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat -->
+    <main class="ai-main">
+      <div class="ai-chat-bar">
+        <div class="ai-chat-bar-left">
+          <div class="sea-avatar">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="ai-chat-name">SEA Assistant</div>
+            <div class="ai-chat-sub">Asisten Cerdas RE-OCEAN</div>
+          </div>
+        </div>
+        <div class="ai-chat-actions">
+          <button class="ai-action-btn" aria-label="Ekspor percakapan">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="ai-messages" id="chat-container">
+        <!-- Welcome Screen -->
+        <div class="ai-welcome" id="welcome-screen">
+          <div class="ai-welcome-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h2>Halo, saya SEA.</h2>
+          <p>Asisten AI cerdas Anda untuk segala informasi mengenai pengolahan limbah ikan, ekonomi sirkular, dan model bisnis RE-OCEAN.</p>
+          <div class="ai-welcome-grid">
+            <div class="welcome-card" onclick="setQuery('Bagaimana proses ekstraksi kolagen dari sisik ikan kakap merah?')">
+              <div class="welcome-card-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg></div>
+              <h5>Teknologi Ekstraksi</h5>
+              <p>Pelajari metode pengolahan limbah menjadi produk bernilai.</p>
+            </div>
+            <div class="welcome-card" onclick="setQuery('Berapa estimasi modal dan ROI untuk bisnis pupuk cair dari limbah ikan?')">
+              <div class="welcome-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <h5>Analisis Bisnis</h5>
+              <p>Hitung potensi profit dari ekonomi sirkular pesisir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-input-area">
+        <div class="ai-suggestions" id="suggestions">
+          <div class="ai-chip" onclick="setQuery('Apa itu ekonomi sirkular?')">Ekonomi Sirkular</div>
+          <div class="ai-chip" onclick="setQuery('Cara membuat pakan ternak')">Cara membuat pakan ternak</div>
+          <div class="ai-chip" onclick="setQuery('Standar mutu kolagen BPOM')">Standar mutu kolagen BPOM</div>
+        </div>
+        <div class="ai-input-row">
+          <textarea class="ai-textarea" id="chat-input" placeholder="Tanyakan pada SEA tentang pengolahan limbah ikan..." rows="1"></textarea>
+          <button class="ai-send" id="send-btn" disabled>
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </div>
+        <div class="ai-hint">SEA dapat membuat kesalahan. Harap verifikasi informasi krusial, terutama terkait medis atau bisnis.</div>
+      </div>
+    </main>
+
+    <!-- Right Panel -->
+    <aside class="ai-right">
+      <div class="ai-panel card-white">
+        <div class="ai-panel-title">Kemampuan SEA</div>
+        
+        <div class="ai-cap">
+          <div class="ai-cap-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg></div>
+          <div>
+            <h5>Bioproses & Ekstraksi</h5>
+            <p>Panduan pengolahan tulang, kulit, dan sisik ikan skala UMKM.</p>
+          </div>
+        </div>
+
+        <div class="ai-cap">
+          <div class="ai-cap-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div>
+            <h5>Kalkulasi Ekonomi</h5>
+            <p>Estimasi biaya operasional dan margin keuntungan produk sirkular.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-panel card-white">
+        <div class="ai-panel-title">Topik Populer</div>
+        <div class="topic-grid">
+          <div class="topic-btn" onclick="setQuery('Nutrisi Kulit Ikan')">
+            <div class="topic-btn-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            Nutrisi Kulit Ikan
+          </div>
+          <div class="topic-btn" onclick="setQuery('Pupuk Organik')">
+            <div class="topic-btn-icon"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+            Pupuk Organik
+          </div>
+          <div class="topic-btn" onclick="setQuery('Standar BPOM')">
+            <div class="topic-btn-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            Standar BPOM
+          </div>
+          <div class="topic-btn" onclick="setQuery('Dampak Karbon')">
+            <div class="topic-btn-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+            Dampak Karbon
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-panel card-white">
+        <div class="ai-panel-title">Statistik Pengetahuan</div>
+        <div class="ai-stat-row">
+          <div class="ai-stat-bar-label"><span>Teknologi Pangan</span><span>85%</span></div>
+          <div class="ai-stat-bar"><div class="ai-stat-fill" style="width:85%"></div></div>
+        </div>
+        <div class="ai-stat-row">
+          <div class="ai-stat-bar-label"><span>Akuakultur</span><span>92%</span></div>
+          <div class="ai-stat-bar"><div class="ai-stat-fill" style="width:92%"></div></div>
+        </div>
+        <div class="ai-stat-row">
+          <div class="ai-stat-bar-label"><span>Manajemen Limbah</span><span>98%</span></div>
+          <div class="ai-stat-bar"><div class="ai-stat-fill" style="width:98%"></div></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/ai.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembayaran Berhasil | RE-OCEAN</title>
+  <link rel="stylesheet" href="css/global.css?v=9">
+  <style>
+    .success-page {
+      padding: calc(var(--nav-height) + 120px) 0 100px;
+      background: var(--bg-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .success-card {
+      background: #fff;
+      padding: 60px 40px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    
+    .success-icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+    
+    .success-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--navy-900);
+      margin-bottom: 12px;
+    }
+    
+    .success-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    
+    .order-number {
+      background: var(--bg-main);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 32px;
+    }
+    
+    .order-number span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    
+    .order-number strong {
+      font-family: var(--font-mono, monospace);
+      font-size: 1.2rem;
+      color: var(--navy-900);
+      letter-spacing: 0.1em;
+    }
+    
+    .btn-return {
+      display: inline-block;
+      width: 100%;
+      padding: 16px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-4 6-4 6 4 6 4 3 4 6 4"/><path d="M2 18s3-4 6-4 6 4 6 4 3 4 6 4"/></svg>
+        </div>
+        <span class="nav-logo-text">RE<span class="dot">·</span>OCEAN</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="lokasi.html" class="nav-link">Lokasi</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="ai-assistant.html" class="nav-link">SEA</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="success-page">
+    <div class="container" style="display:flex; justify-content:center;">
+      <div class="success-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h1 class="success-title">Pembayaran Berhasil!</h1>
+        <p class="success-desc">Terima kasih telah mendukung ekonomi sirkular bersama RE-OCEAN. Pesanan Anda telah diterima dan sedang diproses oleh mitra kami.</p>
+        
+        <div class="order-number">
+          <span>Nomor Pesanan</span>
+          <strong id="random-order">RO-2026-X89KF</strong>
+        </div>
+        
+        <a href="marketplace.html" class="btn btn-ocean btn-return">Kembali Belanja</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let result = "RO-2026-";
+      for (let i = 0; i < 6; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById("random-order").textContent = result;
+    });
+  </script>
+</body>
+</html>

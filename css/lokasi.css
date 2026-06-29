@@ -1,0 +1,313 @@
+/* =============================================================
+   RE-OCEAN — Lokasi CSS v2 (Premium Ocean)
+   ============================================================= */
+
+.lokasi-page { padding-top: var(--nav-height); background: var(--bg-main); min-height: 100vh; }
+
+.lokasi-banner {
+  background: var(--navy-950);
+  padding: 72px 0 56px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.lokasi-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 0% 100%, rgba(24,150,184,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.lokasi-banner h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 300;
+  color: var(--bg-main);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.lokasi-banner p { color: rgba(255,255,255,0.6); font-size: 1rem; font-weight: 300; line-height: 1.8; }
+
+.lokasi-body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 80px;
+}
+
+/* Stats */
+.lokasi-stats {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 40px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 28px 32px;
+  text-align: center;
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.85);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: var(--transition);
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.stat-val {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--primary);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* Map */
+.map-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 640px;
+  position: relative;
+}
+
+.map-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 16px 24px;
+  background: rgba(217,217,216,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.map-bar-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--navy-900);
+}
+
+.map-locate-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 22px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  box-shadow: var(--shadow-primary);
+  letter-spacing: 0.04em;
+}
+
+.map-locate-btn:hover { background: var(--primary-light); transform: translateY(-1px); }
+.map-locate-btn svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; }
+
+#lokasi-map { width: 100%; height: 100%; }
+
+.map-loading {
+  position: absolute; inset: 0;
+  background: rgba(217,217,216,0.92);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; z-index: 400;
+  transition: opacity 0.5s;
+}
+.map-loading.hidden { opacity: 0; pointer-events: none; }
+
+.map-spinner {
+  width: 48px; height: 48px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.map-loading p { font-size: 0.88rem; color: var(--text-muted); font-weight: 500; }
+
+/* Panel */
+.lokasi-panel { display: flex; flex-direction: column; gap: 24px; position: sticky; top: calc(var(--nav-height) + 32px); }
+
+.user-card { padding: 28px; background: rgba(255,255,255,0.70); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.85); }
+.user-card-head { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+
+.user-icon {
+  width: 48px; height: 48px;
+  background: var(--primary);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(42,77,136,0.3);
+}
+.user-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 1.5; }
+
+.user-card-head h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: var(--navy-900); }
+.user-card-head span { font-size: 0.75rem; color: var(--text-muted); font-weight: 300; }
+
+.user-detail-row { margin-bottom: 8px; }
+.user-detail-lbl { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 4px; }
+.user-detail-val { font-size: 0.88rem; color: var(--text-dark); line-height: 1.5; }
+.user-coords { font-family: monospace; font-size: 0.78rem; color: var(--primary); background: rgba(42,77,136,0.08); padding: 6px 12px; border-radius: var(--radius-sm); margin-top: 8px; border: 1px solid rgba(42,77,136,0.15); display: inline-block; }
+
+/* Nearby */
+.nearby-card { padding: 24px; background: rgba(255,255,255,0.70); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.85); }
+.nearby-head { margin-bottom: 20px; padding: 0 4px; }
+.nearby-head h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 500; color: var(--navy-900); margin-bottom: 4px; }
+.nearby-head p { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; }
+
+.nearby-list { display: flex; flex-direction: column; gap: 10px; max-height: 380px; overflow-y: auto; padding-right: 4px; }
+.nearby-list::-webkit-scrollbar { width: 4px; }
+.nearby-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+.seller-item {
+  display: flex; gap: 14px; align-items: center;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(8px);
+}
+
+.seller-item:hover { border-color: var(--primary); transform: translateX(4px); box-shadow: var(--shadow-soft); }
+.seller-item.selected { border-color: var(--primary); background: rgba(42,77,136,0.06); }
+
+.seller-icon {
+  width: 44px; height: 44px; min-width: 44px;
+  border-radius: 10px;
+  background: rgba(42,77,136,0.10);
+  display: flex; align-items: center; justify-content: center;
+}
+.seller-icon svg { width: 22px; height: 22px; stroke: var(--primary); fill: none; stroke-width: 1.5; }
+
+.seller-body { flex: 1; min-width: 0; }
+.seller-name { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 500; color: var(--navy-900); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seller-type { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px; }
+.seller-dist { font-size: 0.72rem; font-weight: 500; color: var(--teal-400); }
+
+.seller-badge {
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+.seller-badge.open { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+.seller-badge.closed { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+/* Leaflet custom */
+.leaflet-popup-content-wrapper {
+  background: #fff !important;
+  border: 1px solid var(--warm-200) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  color: var(--text-dark) !important;
+}
+.leaflet-popup-tip { background: #fff !important; }
+
+.popup-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--navy-900); margin-bottom: 4px; }
+.popup-sub { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 2px; font-weight: 300; }
+
+@media (max-width: 1024px) {
+  .lokasi-body { grid-template-columns: 1fr; }
+  .map-card { height: 480px; }
+  .lokasi-panel { position: static; }
+}
+
+@media (max-width: 640px) {
+  .lokasi-stats { grid-template-columns: 1fr; padding: 24px 20px 0; }
+  .lokasi-body { padding: 24px 20px; }
+}
+
+/* ── Store Modal ────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(4,9,15,0.75);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: var(--transition);
+}
+
+.modal-overlay.open { opacity: 1; visibility: visible; }
+
+.modal-box {
+  background: var(--bg-main);
+  border-radius: var(--radius-xl);
+  max-width: 720px; width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.96) translateY(16px);
+  transition: var(--transition);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+
+.modal-header {
+  padding: 32px 36px 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.5);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.modal-product-info { display: flex; gap: 20px; align-items: center; }
+.modal-product-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 500; color: var(--navy-900); margin-bottom: 4px; }
+.modal-product-price { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+
+.modal-close {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.10);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  transition: var(--transition);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.modal-close:hover { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
+
+.modal-body { padding: 36px; }
+
+.journey-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 32px;
+}
+.modal-actions { margin-top: 40px; display: flex; gap: 16px; }
+/* -- Lokasi glassmorphism -- */
+.map-sidebar, .store-list-item, .info-card {
+  background: rgba(255,255,255,0.68) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  box-shadow: 0 8px 32px rgba(42,77,136,0.10) !important;
+}
