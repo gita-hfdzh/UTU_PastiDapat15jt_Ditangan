@@ -287,7 +287,14 @@
         jumlah: qty
       };
       
-      let cart = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
+      let cart = [];
+      try {
+        const stored = localStorage.getItem('lamuri_cart');
+        if(stored) cart = JSON.parse(stored);
+        if(!Array.isArray(cart)) cart = [];
+      } catch(e) {
+        cart = [];
+      }
       
       if(isBuyNow) {
          // Fitur Beli Langsung: hanya memproses barang ini saja

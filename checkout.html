@@ -243,7 +243,14 @@
     }
     
     // SIMULASI SISTEM: Keranjang Global dibaca dari localStorage
-    let cartItems = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
+    let cartItems = [];
+    try {
+      const stored = localStorage.getItem('lamuri_cart');
+      if (stored) cartItems = JSON.parse(stored);
+      if (!Array.isArray(cartItems)) cartItems = [];
+    } catch(e) {
+      cartItems = [];
+    }
 
     function changeQty(index, delta) {
       if(cartItems[index].jumlah + delta > 0) {
@@ -266,7 +273,13 @@
     // Logic for Automatic Cart Detection
     function updateCheckoutUI() {
       // Refresh variable if accessed directly
-      cartItems = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
+      try {
+        const stored = localStorage.getItem('lamuri_cart');
+        if (stored) cartItems = JSON.parse(stored);
+        if (!Array.isArray(cartItems)) cartItems = [];
+      } catch(e) {
+        cartItems = [];
+      }
       
       // Variabel global untuk menyimpan total belanja
       let subtotalBelanja = 0;
@@ -285,7 +298,7 @@
             </div>
             <div style="display:flex; align-items:center; gap:16px; background:#f9fafb; padding:4px 12px; border-radius:12px; border:1px solid #e5e7eb;">
               <button type="button" onclick="changeQty(${i}, -1)" style="border:none; background:none; font-size:1.4rem; cursor:pointer; color:var(--navy-600); line-height:1;">&minus;</button>
-              <span style="font-weight:bold; min-width:20px; text-align:center; color:var(--navy-900);">${item.jumlah}</span>
+              <span style="font-weight:bold; min-width:30px; text-align:center; color:var(--navy-900);">${item.jumlah} Kg</span>
               <button type="button" onclick="changeQty(${i}, 1)" style="border:none; background:none; font-size:1.4rem; cursor:pointer; color:var(--navy-600); line-height:1;">&plus;</button>
             </div>
           </div>
