@@ -85,9 +85,12 @@
 
             <div id="address-form" style="display:none; margin-top:20px; padding-top:20px; border-top:1px dashed #ddd;">
               <div class="form-group">
-                <label class="form-label" style="display:flex; justify-content:space-between;">
+                <label class="form-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                   <span>Cari Alamat Pengiriman</span>
-                  <button type="button" onclick="document.getElementById('alamat-input').value='Jalan Teuku Umar No. 12, Banda Aceh'" style="background:none; border:none; color:var(--teal-600); cursor:pointer; font-size:0.8rem; font-weight:bold;">Gunakan Lokasi Saat Ini</button>
+                  <button type="button" id="btn-lokasi" onclick="detectLocation()" style="background:var(--teal-500); border:none; color:white; padding:6px 12px; border-radius:16px; cursor:pointer; font-size:0.8rem; font-weight:bold; display:flex; align-items:center; gap:6px; box-shadow:0 2px 5px rgba(13,148,136,0.3); transition:transform 0.2s;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Gunakan Lokasi Saat Ini
+                  </button>
                 </label>
                 <input type="text" id="alamat-input" class="form-input" placeholder="Ketik nama jalan atau area..." autocomplete="off">
               </div>
@@ -106,10 +109,10 @@
                 <!-- Opsi Instan (Limbah) -->
                 <div id="kurir-mentah" style="display:none;">
                   <label class="radio-option" style="border-color:var(--teal-300); background:rgba(13,148,136,0.05);">
-                    <input type="radio" name="kurir" value="instan"> <strong>Kurir Instan (Maks 15 KM)</strong> - Rp 25.000
-                    <div style="font-size:0.8rem; color:var(--text-muted); margin-left:26px;">Khusus pengiriman limbah mentah untuk mencegah pembusukan.</div>
+                    <input type="radio" name="kurir" value="instan"> <strong>Kurir Instan Tercepat (Maks 2 Jam Tiba)</strong> - Rp 25.000
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-left:26px; margin-top:4px;">Pengiriman radius 15 KM menggunakan armada lokal khusus limbah segar.</div>
                   </label>
-                  <div style="font-size:0.8rem; color:#ef4444; margin-top:8px;">*Jika jarak pengiriman lebih dari 15 KM, silakan gunakan metode BOPIS.</div>
+                  <div style="font-size:0.8rem; color:#ef4444; margin-top:8px;">*Limbah mentah wajib dikirim instan untuk mencegah pembusukan. Jika lebih dari 15 KM, silakan ambil metode BOPIS.</div>
                 </div>
               </div>
             </div>
@@ -189,6 +192,59 @@
     const bopisWarning = document.getElementById('bopis-warning');
     const paymentCod = document.getElementById('payment-cod');
     
+    // Logic for Location Detection
+    function detectLocation() {
+      const btn = document.getElementById('btn-lokasi');
+      const input = document.getElementById('alamat-input');
+      const originalHtml = btn.innerHTML;
+      
+      btn.innerHTML = '<span style="animation: pulse 1.5s infinite;">Melacak satelit GPS...</span>';
+      btn.disabled = true;
+      input.disabled = true;
+      input.value = "Sedang mengambil data satelit...";
+      
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            
+            input.value = `Koordinat didapat: ${lat.toFixed(4)}, ${lng.toFixed(4)}. Mencari alamat...`;
+            
+            try {
+              // Memanggil API Geocoding Gratis OpenStreetMap untuk mendapatkan alamat nyata secara Realtime
+              const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+              const data = await res.json();
+              const realAddress = data.display_name || "Alamat tidak dapat diidentifikasi";
+              
+              input.value = `📍 ${realAddress}`;
+              input.style.borderColor = 'var(--teal-400)';
+              input.style.backgroundColor = 'rgba(13,148,136,0.05)';
+            } catch (err) {
+              input.value = `📍 Lat ${lat.toFixed(4)}, Lng ${lng.toFixed(4)} (Gagal memuat detail jalan)`;
+            }
+            
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+            input.disabled = false;
+          },
+          (error) => {
+            alert('Akses lokasi ditolak atau gagal. Pastikan browser mengizinkan akses lokasi.');
+            input.value = "";
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+            input.disabled = false;
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      } else {
+        alert("Browser Anda tidak mendukung pelacakan GPS.");
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+        input.disabled = false;
+      }
+    }
+    
     // Logic for Simulator
     function updateSimulator() {
       const isMentah = cartSimulator.value === 'mentah';
@@ -242,8 +298,46 @@
       });
     });
 
-    document.getElementById('pay-btn').addEventListener('click', () => {
-      window.location.href = 'success.html';
+    document.getElementById('pay-btn').addEventListener('click', async (e) => {
+      const btn = e.target;
+      const originalText = btn.textContent;
+      
+      // Kumpulkan data pesanan
+      const orderData = {
+        tipeKeranjang: cartSimulator.value,
+        metodePengiriman: document.querySelector('input[name="shipping"]:checked').value,
+        metodePembayaran: document.querySelector('input[name="payment"]:checked').value,
+        total: totalPrice.textContent
+      };
+
+      try {
+        // Tampilkan status loading
+        btn.innerHTML = '<span style="display:inline-block; animation: pulse 1.5s infinite;">Memproses...</span>';
+        btn.disabled = true;
+
+        // Panggil Backend API
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          // Jika sukses, lempar ke success.html
+          window.location.href = 'success.html';
+        } else {
+          alert('Gagal memproses pesanan: ' + result.message);
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan jaringan saat menghubungi server.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
     });
     
     // Init state
