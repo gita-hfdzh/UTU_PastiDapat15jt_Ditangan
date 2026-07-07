@@ -127,9 +127,9 @@
             </div>
 
             <div style="display: flex; gap: 12px; margin-bottom: 20px;">
-            <a href="keranjang.html" class="btn btn-outline-dark btn-buy" onclick="alert('Ditambahkan ke keranjang!'); return true;">+ Keranjang</a>
-            <a href="checkout.html" class="btn btn-ocean btn-buy">Beli Sekarang</a>
-          </div>
+              <button type="button" class="btn btn-outline-dark btn-buy" onclick="addToCart(false)">+ Keranjang</button>
+              <button type="button" class="btn btn-ocean btn-buy" onclick="addToCart(true)">Beli Sekarang</button>
+            </div>
           
           <div style="margin-bottom: 40px;">
             <button class="btn btn-outline-dark" style="width:100%; border-color:#25D366; color:#25D366;" id="btn-open-chat">💬 Chat Penjual</button>
@@ -270,9 +270,46 @@
               </div>
             </div>
           `).join('');
+          `).join('');
+          
+          window.currentProduct = prod;
         }
       }
     });
+
+    function addToCart(isBuyNow) {
+      if (!window.currentProduct) return;
+      const qty = parseInt(document.getElementById('qty-input').value) || 1;
+      
+      const cartItem = {
+        nama: window.currentProduct.name,
+        kategori: window.currentProduct.mainType === 'limbah' ? 'limbah_mentah' : 'produk_olahan',
+        harga: window.currentProduct.price,
+        jumlah: qty
+      };
+      
+      let cart = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
+      
+      if(isBuyNow) {
+         // Fitur Beli Langsung: hanya memproses barang ini saja
+         cart = [cartItem]; 
+      } else {
+         const existing = cart.findIndex(i => i.nama === cartItem.nama);
+         if(existing > -1) {
+            cart[existing].jumlah += qty;
+         } else {
+            cart.push(cartItem);
+         }
+      }
+      
+      localStorage.setItem('lamuri_cart', JSON.stringify(cart));
+      
+      if(isBuyNow) {
+        window.location.href = 'checkout.html';
+      } else {
+        alert('Produk berhasil ditambahkan ke keranjang!');
+      }
+    }
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

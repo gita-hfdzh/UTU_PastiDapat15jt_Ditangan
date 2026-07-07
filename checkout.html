@@ -242,15 +242,8 @@
       }
     }
     
-    // Variabel global untuk menyimpan total belanja
-    let subtotalBelanja = 0;
-    const diskonSirkular = 5000;
-
-    // SIMULASI SISTEM: Keranjang Global
-    let cartItems = [
-      { nama: "Limbah Tulang Ikan Tuna (Grade A)", kategori: "limbah_mentah", harga: 20000, jumlah: 1 },
-      { nama: "Kerupuk Kulit Ikan Olahan", kategori: "produk_olahan", harga: 15000, jumlah: 1 }
-    ];
+    // SIMULASI SISTEM: Keranjang Global dibaca dari localStorage
+    let cartItems = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
 
     function changeQty(index, delta) {
       if(cartItems[index].jumlah + delta > 0) {
@@ -260,6 +253,10 @@
           cartItems.splice(index, 1);
         }
       }
+      
+      // Simpan perubahan jumlah barang kembali ke localStorage
+      localStorage.setItem('lamuri_cart', JSON.stringify(cartItems));
+      
       updateCheckoutUI();
       // Paksa trigger event change pada radio pengiriman yang sedang aktif untuk update ongkir
       const activeRadio = document.querySelector('input[name="shipping"]:checked');
@@ -268,6 +265,13 @@
 
     // Logic for Automatic Cart Detection
     function updateCheckoutUI() {
+      // Refresh variable if accessed directly
+      cartItems = JSON.parse(localStorage.getItem('lamuri_cart')) || [];
+      
+      // Variabel global untuk menyimpan total belanja
+      let subtotalBelanja = 0;
+      const diskonSirkular = 5000;
+      
       // Render HTML Daftar Barang
       const listContainer = document.getElementById('cart-items-list');
       if (cartItems.length === 0) {
@@ -290,7 +294,11 @@
       
       // Hitung total barang dan subtotal
       const totalBarang = cartItems.reduce((sum, item) => sum + item.jumlah, 0);
-      subtotalBelanja = cartItems.reduce((sum, item) => sum + (item.harga * item.jumlah), 0);
+      subtotalBelanja = cartItems.reduce((sum, item) => sum + ((item.harga || 0) * item.jumlah), 0);
+      
+      // Menyimpan subtotal ke window object agar bisa diakses oleh event listener radio
+      window.currentSubtotal = subtotalBelanja;
+      window.currentDiskon = diskonSirkular;
       
       document.getElementById('summary-items-count').textContent = `Total Barang (${totalBarang})`;
       document.getElementById('summary-items-price').textContent = `Rp ${subtotalBelanja.toLocaleString('id-ID')}`;
@@ -324,8 +332,8 @@
           bopisForm.style.display = 'block';
           shippingCost.innerHTML = '<span>Biaya Layanan (BOPIS)</span><span>Gratis</span>';
           
-          const totalAkhir = subtotalBelanja - diskonSirkular;
-          totalPrice.textContent = `Rp ${totalAkhir.toLocaleString('id-ID')}`;
+          const totalAkhir = (window.currentSubtotal || 0) - (window.currentDiskon || 0);
+          totalPrice.textContent = `Rp ${totalAkhir > 0 ? totalAkhir.toLocaleString('id-ID') : 0}`;
         } else {
           addressForm.style.display = 'block';
           bopisForm.style.display = 'none';
@@ -344,8 +352,8 @@
              document.querySelector('input[name="kurir"][value="reguler"]').checked = true;
           }
           
-          const totalAkhir = subtotalBelanja - diskonSirkular + ongkir;
-          totalPrice.textContent = `Rp ${totalAkhir.toLocaleString('id-ID')}`;
+          const totalAkhir = (window.currentSubtotal || 0) - (window.currentDiskon || 0) + ongkir;
+          totalPrice.textContent = `Rp ${totalAkhir > 0 ? totalAkhir.toLocaleString('id-ID') : 0}`;
         }
       });
     });
