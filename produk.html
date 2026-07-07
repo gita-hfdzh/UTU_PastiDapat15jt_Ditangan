@@ -226,7 +226,7 @@
           if (qtyInput && bulkBanner) {
             qtyInput.addEventListener('input', (e) => {
               let val = parseInt(e.target.value);
-              if (val > 50) {
+              if (val > 50 && prod.mainType === 'olahan') {
                 bulkBanner.style.display = 'block';
               } else {
                 bulkBanner.style.display = 'none';
