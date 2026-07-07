@@ -8,26 +8,26 @@ const PRODUCTS = [
     id: 991, name: 'Tulang Ikan Tuna Segar (Per Kg)', mainType: 'limbah',
     category: 'tulang', price: 5000, oldPrice: null,
     rating: 4.5, sold: 450, stock: 120,
-    seller: 'Koperasi Nelayan Lampulo',
+    seller: 'LAMURI Hub Aceh Besar',
     image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=400&h=280&q=80',
     badge: 'Bahan Baku', badgeType: 'badge-warning',
-    description: 'Limbah tulang ikan tuna segar, cocok untuk bahan baku pembuatan tepung ikan atau pupuk cair organik. Diambil langsung dari hasil tangkapan harian.',
+    description: 'Limbah tulang ikan tuna segar, cocok untuk bahan baku pembuatan tepung ikan atau pupuk cair organik. Diambil langsung dari hasil tangkapan nelayan yang disetor ke LAMURI.',
     journey: [
-      { title: 'Tangkapan Pagi', desc: 'Ikan ditangkap oleh nelayan lokal di perairan Aceh.', loc: 'Perairan Aceh' },
-      { title: 'Fillet & Pemisahan', desc: 'Daging dipisahkan untuk pasar, tulang dan sisa kepala dikumpulkan khusus.', loc: 'TPI Lampulo' }
+      { title: 'Penyetoran Nelayan', desc: 'Nelayan menyetorkan sisa tangkapan ke LAMURI Hub.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Sortasi & Penyimpanan Dingin', desc: 'Tulang disortir dan disimpan dalam cold storage untuk menjaga kesegaran.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' }
     ]
   },
   {
     id: 992, name: 'Kulit Ikan Kakap Mentah (Per Kg)', mainType: 'limbah',
     category: 'kulit', price: 12000, oldPrice: null,
     rating: 4.9, sold: 120, stock: 45,
-    seller: 'Pengepul Lokal Meulaboh',
+    seller: 'LAMURI Hub Aceh Besar',
     image: 'https://images.unsplash.com/photo-1595166244673-8b74fb2fa177?auto=format&fit=crop&w=400&h=280&q=80',
     badge: 'Limbah Mentah', badgeType: 'badge-light',
-    description: 'Kulit ikan kakap segar kualitas terbaik. Siap diolah menjadi keripik atau diekstrak kolagennya.',
+    description: 'Kulit ikan kakap segar kualitas terbaik. Disortir secara higienis di LAMURI Hub, siap diolah menjadi keripik atau diekstrak kolagennya.',
     journey: [
-      { title: 'Tangkapan Harian', desc: 'Kakap merah ditangkap segar dari laut dangkal.', loc: 'Pesisir Meulaboh' },
-      { title: 'Pemisahan Kulit', desc: 'Kulit dipisahkan dengan teknik steril tanpa merusak serat.', loc: 'Toko Penjual Nelayan Meulaboh' }
+      { title: 'Penyetoran Kulit', desc: 'Nelayan membawa sisa fillet kulit ikan kakap merah ke Hub kami.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pembersihan Cepat', desc: 'Kulit dibersihkan secara higienis di bawah suhu terkontrol.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' }
     ]
   },
   {
@@ -165,44 +165,44 @@ const PRODUCTS = [
     id: 10, name: 'Kulit Ikan Tenggiri Mentah (Grade A)', mainType: 'limbah',
     category: 'kulit', price: 15000, oldPrice: 18000,
     rating: 4.6, sold: 1200, stock: 80,
-    seller: 'Toko Penjual Ulee Lheue',
+    seller: 'LAMURI Hub Aceh Besar',
     image: 'https://images.unsplash.com/photo-1596700755913-9111e1f7a077?auto=format&fit=crop&w=400&h=280&q=80',
     badge: 'Segar', badgeType: 'badge-blue',
-    description: 'Kulit ikan tenggiri mentah bersih hasil sisa fillet. Cocok untuk bahan baku kerupuk kulit, ekstraksi kolagen, atau kerajinan.',
+    description: 'Kulit ikan tenggiri mentah bersih hasil sisa fillet yang disetor ke Hub. Cocok untuk bahan baku kerupuk kulit, ekstraksi kolagen, atau kerajinan.',
     journey: [
-      { title: 'Fillet Ikan', desc: 'Pemrosesan ikan tenggiri segar dari nelayan untuk kebutuhan daging konsumsi.', loc: 'Pelabuhan Lampulo' },
-      { title: 'Pemisahan Kulit', desc: 'Kulit dipisahkan dengan hati-hati, bebas sisa daging, dan langsung dicuci dengan air dingin mengalir.', loc: 'Fasilitas Fillet' },
-      { title: 'Penyimpanan Dingin', desc: 'Disimpan pada suhu -20°C untuk menjaga kualitas sebelum dikirim ke pembeli.', loc: 'Cold Storage LAMURI' },
-      { title: 'Pengiriman', desc: 'Dikemas dalam box styrofoam dengan dry ice untuk menjamin kesegaran sampai ke tangan Anda.', loc: 'Toko Penjual Logistik' }
+      { title: 'Penyetoran Sisa Fillet', desc: 'Sisa fillet ikan tenggiri disetorkan nelayan ke LAMURI Hub.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pencucian & Sterilisasi', desc: 'Kulit dipisahkan dari sisa daging dan langsung dicuci dengan air bersih mengalir.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Cold Storage', desc: 'Disimpan pada suhu -20°C untuk menjaga kualitas tinggi.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Siap Distribusi', desc: 'Siap diambil atau dikirim instan ke UMKM.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' }
     ]
   },
   {
     id: 11, name: 'Tulang dan Kepala Ikan Kakap Merah', mainType: 'limbah',
     category: 'tulang', price: 8000,
     rating: 4.5, sold: 850, stock: 150,
-    seller: 'Koperasi Nelayan Mulia',
+    seller: 'LAMURI Hub Aceh Besar',
     image: 'https://images.unsplash.com/photo-1509315682142-b0521eec4b29?auto=format&fit=crop&w=400&h=280&q=80',
-    description: 'Limbah tulang dan kepala ikan kakap merah segar. Sangat ideal sebagai bahan baku kaldu ikan, tepung tulang, atau kompos organik.',
+    description: 'Limbah tulang dan kepala ikan kakap merah segar. Disimpan secara tersentralisasi di Hub kami. Ideal untuk bahan baku kaldu ikan.',
     journey: [
-      { title: 'Pengumpulan Limbah', desc: 'Sisa potongan tulang dan kepala ikan kakap dikumpulkan langsung setelah fillet.', loc: 'Pasar Ikan Peunayong' },
-      { title: 'Pembersihan', desc: 'Dibersihkan dari kotoran dan insang untuk mengurangi bau dan menjaga higienitas bahan baku.', loc: 'Area Pembersihan' },
-      { title: 'Pengemasan', desc: 'Dikemas per 5kg dalam plastik vakum dan dibekukan.', loc: 'Gudang Penyimpanan' },
-      { title: 'Distribusi', desc: 'Siap dikirim ke industri pakan, pengrajin kaldu, atau pembuat kompos.', loc: 'Toko Penjual Distribusi' }
+      { title: 'Penyetoran Limbah', desc: 'Sisa potongan tulang dan kepala ikan disetorkan oleh nelayan mitra ke hub LAMURI.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pembersihan', desc: 'Dibersihkan dari kotoran untuk mengurangi bau dan menjaga higienitas bahan baku.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pengemasan', desc: 'Dikemas dalam plastik vakum dan dibekukan.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Siap Distribusi', desc: 'Siap dikirim ke industri pakan atau pengrajin kaldu.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' }
     ]
   },
   {
     id: 12, name: 'Sisik Ikan Kerapu Mentah Kering', mainType: 'limbah',
     category: 'sisik', price: 12000,
     rating: 4.4, sold: 400, stock: 60,
-    seller: 'Koperasi Nelayan Mulia',
+    seller: 'LAMURI Hub Aceh Besar',
     image: 'https://images.unsplash.com/photo-1558231908-1678be8cde47?auto=format&fit=crop&w=400&h=280&q=80',
     badge: 'Kering', badgeType: 'badge-warning',
-    description: 'Sisik ikan kerapu asli yang sudah dicuci bersih dan dijemur kering. Cocok untuk bahan kerajinan artisan dan ekstraksi peptida.',
+    description: 'Sisik ikan kerapu asli yang disetor nelayan dan dijemur kering di Hub kami. Cocok untuk bahan kerajinan artisan.',
     journey: [
-      { title: 'Pengumpulan Sisik', desc: 'Sisik ikan kerapu besar dikumpulkan sesaat setelah ikan merapat di dermaga.', loc: 'TPI Lampulo' },
-      { title: 'Pencucian', desc: 'Dicuci dengan air mengalir dan disikat ringan untuk membuang sisa lendir.', loc: 'Area Pembersihan' },
-      { title: 'Pengeringan', desc: 'Dijemur di bawah sinar matahari langsung selama 2 hari hingga kadar air < 12%.', loc: 'Sentra Pengeringan' },
-      { title: 'Distribusi', desc: 'Dikemas aman dalam kantong ziplock dan siap dikirim ke pengrajin seluruh Indonesia.', loc: 'Toko Penjual Distribusi' }
+      { title: 'Penyetoran Sisik', desc: 'Sisik ikan kerapu disetorkan oleh nelayan ke hub sentral LAMURI.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pencucian', desc: 'Dicuci dengan air mengalir dan disikat ringan.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Pengeringan Terpusat', desc: 'Dijemur di area pengeringan khusus kami hingga kadar air < 12%.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' },
+      { title: 'Siap Distribusi', desc: 'Dikemas aman dan siap dikirim ke pengrajin seluruh Indonesia.', loc: 'Fasilitas LAMURI Hub, Aceh Besar' }
     ]
   }
 ];
