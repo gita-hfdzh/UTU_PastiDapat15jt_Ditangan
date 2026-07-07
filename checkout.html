@@ -55,6 +55,12 @@
       
       <div class="checkout-grid">
         <div>
+          <!-- Order Items List -->
+          <div class="section-card" id="order-items-container">
+            <div class="section-header">Barang yang Dibeli</div>
+            <div id="cart-items-list"></div>
+          </div>
+          
           <!-- Shipping / Pickup -->
           <div class="section-card">
             <div class="section-header">Metode Pengiriman</div>
@@ -240,13 +246,47 @@
     let subtotalBelanja = 0;
     const diskonSirkular = 5000;
 
+    // SIMULASI SISTEM: Keranjang Global
+    let cartItems = [
+      { nama: "Limbah Tulang Ikan Tuna (Grade A)", kategori: "limbah_mentah", harga: 20000, jumlah: 1 },
+      { nama: "Kerupuk Kulit Ikan Olahan", kategori: "produk_olahan", harga: 15000, jumlah: 1 }
+    ];
+
+    function changeQty(index, delta) {
+      if(cartItems[index].jumlah + delta > 0) {
+        cartItems[index].jumlah += delta;
+      } else if(cartItems[index].jumlah + delta === 0) {
+        if(confirm('Hapus barang ini dari keranjang?')) {
+          cartItems.splice(index, 1);
+        }
+      }
+      updateCheckoutUI();
+      // Paksa trigger event change pada radio pengiriman yang sedang aktif untuk update ongkir
+      const activeRadio = document.querySelector('input[name="shipping"]:checked');
+      if (activeRadio) activeRadio.dispatchEvent(new Event('change'));
+    }
+
     // Logic for Automatic Cart Detection
     function updateCheckoutUI() {
-      // SIMULASI SISTEM: Membaca isi keranjang pembeli dari database/sistem
-      const cartItems = [
-        { nama: "Limbah Tulang Ikan Tuna (Grade A)", kategori: "limbah_mentah", harga: 20000, jumlah: 1 },
-        { nama: "Kerupuk Kulit Ikan Olahan", kategori: "produk_olahan", harga: 15000, jumlah: 1 }
-      ];
+      // Render HTML Daftar Barang
+      const listContainer = document.getElementById('cart-items-list');
+      if (cartItems.length === 0) {
+        listContainer.innerHTML = '<p style="color:#ef4444; font-weight:bold; padding:12px 0;">Keranjang Kosong! Silakan kembali ke marketplace.</p>';
+      } else {
+        listContainer.innerHTML = cartItems.map((item, i) => `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f3f4f6;">
+            <div>
+              <div style="font-weight:600; color:var(--navy-900);">${item.nama}</div>
+              <div style="font-size:0.85rem; color:var(--teal-600);">Rp ${item.harga.toLocaleString('id-ID')} / kg</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; background:#f9fafb; padding:4px 12px; border-radius:12px; border:1px solid #e5e7eb;">
+              <button type="button" onclick="changeQty(${i}, -1)" style="border:none; background:none; font-size:1.4rem; cursor:pointer; color:var(--navy-600); line-height:1;">&minus;</button>
+              <span style="font-weight:bold; min-width:20px; text-align:center; color:var(--navy-900);">${item.jumlah}</span>
+              <button type="button" onclick="changeQty(${i}, 1)" style="border:none; background:none; font-size:1.4rem; cursor:pointer; color:var(--navy-600); line-height:1;">&plus;</button>
+            </div>
+          </div>
+        `).join('');
+      }
       
       // Hitung total barang dan subtotal
       const totalBarang = cartItems.reduce((sum, item) => sum + item.jumlah, 0);
@@ -291,7 +331,7 @@
           bopisForm.style.display = 'none';
           
           // Mengecek keranjang lagi untuk menghitung ongkir
-          const isMentah = true; // Hardcode true karena di simulasi atas ada limbah mentah
+          const isMentah = cartItems.some(item => item.kategori === 'limbah_mentah');
           let ongkir = 0;
           
           if(isMentah) {
