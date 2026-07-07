@@ -1,0 +1,28 @@
+{
+  "name": "web_utu",
+  "version": "1.0.0",
+  "description": "aamiin",
+  "main": "replace.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gita-hfdzh/UTU_PastiDapat15jt_Ditangan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gita-hfdzh/UTU_PastiDapat15jt_Ditangan/issues"
+  },
+  "homepage": "https://github.com/gita-hfdzh/UTU_PastiDapat15jt_Ditangan#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4"
+  }
+}
