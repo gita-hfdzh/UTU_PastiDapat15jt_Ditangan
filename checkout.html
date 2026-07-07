@@ -51,14 +51,6 @@
     <div class="container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 32px; flex-wrap:wrap; gap:16px;">
         <h1 class="checkout-title" style="margin-bottom:0;">Checkout</h1>
-        <!-- DEMO TOGGLE -->
-        <div style="background:rgba(13,148,136,0.1); padding:8px 16px; border-radius:20px; font-size:0.85rem; border:1px solid var(--teal-200);">
-          <strong>Mode Simulasi:</strong>
-          <select id="cart-simulator" style="background:transparent; border:none; outline:none; font-weight:bold; color:var(--navy-800); margin-left:8px; cursor:pointer;">
-            <option value="olahan">Produk Olahan</option>
-            <option value="mentah">Limbah Mentah (Cepat Busuk)</option>
-          </select>
-        </div>
       </div>
       
       <div class="checkout-grid">
@@ -157,8 +149,8 @@
         <div class="summary-card">
           <div class="section-header" style="margin-bottom:20px;">Ringkasan Pesanan</div>
           <div class="summary-row">
-            <span>Total Barang (3)</span>
-            <span>Rp 49.000</span>
+            <span id="summary-items-count">Total Barang (0)</span>
+            <span id="summary-items-price">Rp 0</span>
           </div>
           <div class="summary-row">
             <span>Diskon Sirkular</span>
@@ -186,7 +178,6 @@
     const shippingCost = document.getElementById('shipping-cost');
     const totalPrice = document.getElementById('total-price');
     
-    const cartSimulator = document.getElementById('cart-simulator');
     const kurirOlahan = document.getElementById('kurir-olahan');
     const kurirMentah = document.getElementById('kurir-mentah');
     const bopisWarning = document.getElementById('bopis-warning');
@@ -245,12 +236,30 @@
       }
     }
     
-    // Logic for Simulator
-    function updateSimulator() {
-      const isMentah = cartSimulator.value === 'mentah';
+    // Variabel global untuk menyimpan total belanja
+    let subtotalBelanja = 0;
+    const diskonSirkular = 5000;
+
+    // Logic for Automatic Cart Detection
+    function updateCheckoutUI() {
+      // SIMULASI SISTEM: Membaca isi keranjang pembeli dari database/sistem
+      const cartItems = [
+        { nama: "Limbah Tulang Ikan Tuna (Grade A)", kategori: "limbah_mentah", harga: 20000, jumlah: 1 },
+        { nama: "Kerupuk Kulit Ikan Olahan", kategori: "produk_olahan", harga: 15000, jumlah: 1 }
+      ];
+      
+      // Hitung total barang dan subtotal
+      const totalBarang = cartItems.reduce((sum, item) => sum + item.jumlah, 0);
+      subtotalBelanja = cartItems.reduce((sum, item) => sum + (item.harga * item.jumlah), 0);
+      
+      document.getElementById('summary-items-count').textContent = `Total Barang (${totalBarang})`;
+      document.getElementById('summary-items-price').textContent = `Rp ${subtotalBelanja.toLocaleString('id-ID')}`;
+      
+      // Deteksi otomatis apakah ada limbah mentah di dalam keranjang
+      const isMentah = cartItems.some(item => item.kategori === 'limbah_mentah');
       
       if(isMentah) {
-        // UI for Mentah
+        // Otomatis ubah UI khusus Limbah Mentah
         kurirOlahan.style.display = 'none';
         kurirMentah.style.display = 'block';
         bopisWarning.style.background = 'rgba(239,68,68,0.1)';
@@ -258,7 +267,7 @@
         bopisWarning.innerHTML = '<strong>Peringatan Penting:</strong> Harap ambil dalam waktu maksimal 2 Jam. Lewat dari waktu ini, pesanan dibatalkan otomatis untuk mencegah pembusukan limbah.';
         paymentCod.innerHTML = '<input type="radio" name="payment" value="cod"> <strong>COD</strong> (Bayar di Tempat - Tidak berlaku untuk Limbah Mentah)';
       } else {
-        // UI for Olahan
+        // Otomatis ubah UI khusus Produk Olahan
         kurirOlahan.style.display = 'block';
         kurirMentah.style.display = 'none';
         bopisWarning.style.background = 'rgba(16,185,129,0.1)';
@@ -266,12 +275,7 @@
         bopisWarning.innerHTML = '<strong>Informasi:</strong> Waktu pengambilan maksimal 1x24 Jam setelah pembayaran terkonfirmasi.';
         paymentCod.innerHTML = '<input type="radio" name="payment" value="cod"> <strong>COD</strong> (Bayar di Tempat)';
       }
-      
-      // Reset radio checked back to BOPIS default when toggling
-      document.querySelector('input[name="shipping"][value="bopis"]').click();
     }
-
-    cartSimulator.addEventListener('change', updateSimulator);
 
     radiosShipping.forEach(r => {
       r.addEventListener('change', (e) => {
@@ -279,21 +283,29 @@
           addressForm.style.display = 'none';
           bopisForm.style.display = 'block';
           shippingCost.innerHTML = '<span>Biaya Layanan (BOPIS)</span><span>Gratis</span>';
-          totalPrice.textContent = 'Rp 44.000';
+          
+          const totalAkhir = subtotalBelanja - diskonSirkular;
+          totalPrice.textContent = `Rp ${totalAkhir.toLocaleString('id-ID')}`;
         } else {
           addressForm.style.display = 'block';
           bopisForm.style.display = 'none';
           
-          const isMentah = cartSimulator.value === 'mentah';
+          // Mengecek keranjang lagi untuk menghitung ongkir
+          const isMentah = true; // Hardcode true karena di simulasi atas ada limbah mentah
+          let ongkir = 0;
+          
           if(isMentah) {
-             shippingCost.innerHTML = '<span>Ongkos Kirim (Instan)</span><span>Rp 25.000</span>';
-             totalPrice.textContent = 'Rp 69.000';
+             ongkir = 25000;
+             shippingCost.innerHTML = `<span>Ongkos Kirim (Instan)</span><span>Rp ${ongkir.toLocaleString('id-ID')}</span>`;
              document.querySelector('input[name="kurir"][value="instan"]').checked = true;
           } else {
-             shippingCost.innerHTML = '<span>Ongkos Kirim (Reguler)</span><span>Rp 15.000</span>';
-             totalPrice.textContent = 'Rp 59.000';
+             ongkir = 15000;
+             shippingCost.innerHTML = `<span>Ongkos Kirim (Reguler)</span><span>Rp ${ongkir.toLocaleString('id-ID')}</span>`;
              document.querySelector('input[name="kurir"][value="reguler"]').checked = true;
           }
+          
+          const totalAkhir = subtotalBelanja - diskonSirkular + ongkir;
+          totalPrice.textContent = `Rp ${totalAkhir.toLocaleString('id-ID')}`;
         }
       });
     });
@@ -304,7 +316,7 @@
       
       // Kumpulkan data pesanan
       const orderData = {
-        tipeKeranjang: cartSimulator.value,
+        tipeKeranjang: "otomatis_terdeteksi",
         metodePengiriman: document.querySelector('input[name="shipping"]:checked').value,
         metodePembayaran: document.querySelector('input[name="payment"]:checked').value,
         total: totalPrice.textContent
@@ -341,7 +353,7 @@
     });
     
     // Init state
-    updateSimulator();
+    updateCheckoutUI();
   </script>
 </body>
 </html>
